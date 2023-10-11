@@ -1,0 +1,11 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ .Title }}</title>
+	<meta name="description" content="{{ .Summary }}">
+	<meta name="author" content="{{ .Site.Author.name }}">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	{{ with .Params.icon }}<link rel="icon" type="image/x-icon" href="/icons/{{ . }}">{{ end }}
+	<link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}index.xml" title="{{ .Site.Title }}">
+</head>

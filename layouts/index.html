@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{ .Content }}
+
+{{ range .Site.Sections }}
+	<h2>{{ .Title }}</h2>
+	<table class="pages">
+	<th></th>
+	<th>Title</th>
+	<th>Description</th>
+
+	{{ range .RegularPages }}
+	<tr>
+		<td>
+			<a href="{{ .Permalink }}">
+				{{ with .Params.icon }}<img src="/icons/{{ . }}"/>{{ end }}
+			</a>
+		</td>
+		<td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+		<td>{{ with .Params.description }}{{ . }}{{ end }}</td>
+	</tr>
+	{{ end }}
+
+</table>
+{{ end }}
+
+
+{{ end }}

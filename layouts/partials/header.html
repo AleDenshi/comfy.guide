@@ -1,0 +1,5 @@
+<h1>{{ .Title }}</h1>
+{{ if ne .File.Path "_index.md" }}
+<p style="text-align: center;"><a href="/">[ ← Back Home ]</a></p><br>
+{{ end }}
+<small>Last modified on {{ .Date.Format "January 2, 2006" }}</small>

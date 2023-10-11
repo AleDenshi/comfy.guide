@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+{{ with .Params.icon }}
+<img style="height: 10em;" src="/icons/{{ . }}">
+{{ end }}
+
+{{ with .Params.ports }}
+<h2>Prerequisites</h2>
+	<p>Ports required:
+	{{ range $k, $v := . }}
+		{{- if $k }}, {{ end }}
+	  	<code>{{ . }}</code>
+	{{- end }}
+{{ end }}
+
+<h2>Table of Contents</h2>
+{{ .TableOfContents }}
+
+{{ .Content }}
+{{ end }}

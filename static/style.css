@@ -1,0 +1,78 @@
+:root {
+	--bg:	white;
+	--fg:	black;
+	--hl:	lightgray;
+	--ch:	blue;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg:	black;
+		--fg:	white;
+		--hl:	gray;
+		--ch:	lightblue;
+	}
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--fg);
+	width: 90%;
+	max-width: 80em;
+	margin: auto;
+	font-family: serif;
+	text-align: justify;
+	font-size: 1.1em;
+	overflow-wrap: break-word;
+}
+
+h1 {
+	text-align: center;
+}
+
+a {
+	color: var(--ch);
+}
+
+a:hover {
+	color: var(--hl)
+}
+
+img {
+	max-width: 100%;
+	max-height: 35em;
+	display: block;
+	margin: auto;
+}
+
+blockquote {
+	background: var(--hl);
+	padding: 0.1em 1em;
+}
+
+pre {
+	padding: 0.5em 1em;
+	white-space: pre-wrap;
+	text-align: left;
+	border: solid 2px var(--hl);
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+footer img {
+	display: inline-block;
+	height: 1.5em;
+}
+
+.pages {
+	border-collapse: collapse;
+}
+
+.pages th,td {
+	border-bottom:  var(--fg) 1px solid;
+	padding: 0.25em;
+}
+
+.pages img {
+	max-height: 2em;
+}
