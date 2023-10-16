@@ -23,7 +23,19 @@
 			{{ $fileparams.author }}.
 		{{ end }}
 		</p>
-	
+
+		{{ if $params.tor }}
+			<a href="{{ $params.tor }}"><img src="/icons/tor.svg"/></a>
+		{{ else if $fileparams.tor }}
+			<a href="{{ $fileparams.tor }}"><img src="/icons/tor.svg"/></a>
+		{{ end }}
+
+		{{ if $params.i2p }}
+			<a href="{{ $params.i2p }}"><img src="/icons/i2p.svg"/></a>
+		{{ else if $fileparams.i2p }}
+			<a href="{{ $fileparams.i2p }}"><img src="/icons/i2p.svg"/></a>
+		{{ end }}
+
 		{{ if $params.email }}
 			<a href="mailto:{{ $params.email }}"><img src="/icons/email.svg"/></a>
 		{{ else if $fileparams.email }}
