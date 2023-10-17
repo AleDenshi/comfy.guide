@@ -108,12 +108,12 @@ declare -a subdomains=("" "conference." "proxy." "pubsub." "upload.")
 
 for i in "${subdomains[@]}"; do
     certbot --nginx -d $i$DOMAIN certonly
-    mkdir -p /etc/ejabberd/certs/$i$DOMAIN
-    cp /etc/letsencrypt/live/$i$DOMAIN/fullchain.pem /opt/ejabberd/certs/$i$DOMAIN
-    cp /etc/letsencrypt/live/$i$DOMAIN/privkey.pem /opt/ejabberd/certs/$i$DOMAIN
+    mkdir -p /opt/ejabberd/certs/$i$DOMAIN
+    cp /etc/letsencrypt/live/$i$DOMAIN/fullchain.pem /opt/ejabberd/certs/$i$DOMAIN/
+    cp /etc/letsencrypt/live/$i$DOMAIN/privkey.pem /opt/ejabberd/certs/$i$DOMAIN/
 done
 ```
-*Note: Just like with Prosody, you might want to write this script to a file and setup a [cronjob](/cron) to run it periodically. This should help prevent your certificates from expiring.*
+*Note: Just like with Prosody, you might want to write this script to a file and setup a [cronjob](/server/cron) to run it periodically. This should help prevent your certificates from expiring.*
 
 Make sure all the certificates are readable by the `ejabberd` user:
 ```sh
