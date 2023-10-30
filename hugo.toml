@@ -1,3 +1,6 @@
 baseURL = 'https://comfy.guide/'
 languageCode = 'en-us'
 title = 'Comfy Guides'
+
+[params]
+	git = 'https://github.com/AleDenshi/comfy.guide'

@@ -1,5 +1,9 @@
 <footer>
-	<hr/\>
+	<hr/>
+	
+	<p><i>Seen an error, or want to contribute?</i> 
+	<a href="{{ .Site.Params.git }}/blob/master/content/{{ .Page.File }}">Edit this source.</a></p>
+
 	{{ $params := .Params }}
 	{{ $author := .Params.author }}
 	{{ $site := .Site }}
