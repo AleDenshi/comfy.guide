@@ -7,6 +7,7 @@ icon: kisslinux.svg
 
 ## Author Information
 author: Denshi
+draft: true
 ---
 
 [KISS Linux](https://kisslinux.org) is a Linux distribution that uses the `kiss` package manager, a simple extensible shell script. KISS Linux is source-based, meaning packages are downloaded and built from source rather than prebuilt.
