@@ -3,6 +3,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{ .Title }}</title>
 	<meta name="description" content="{{ .Summary }}">
+	{{ with .Params.icon }}<meta property="og:image" content="{{ . }}"/>{{ end }}
 	<meta name="author" content="{{ .Site.Author.name }}">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico">
