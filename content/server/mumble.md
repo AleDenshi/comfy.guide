@@ -55,6 +55,12 @@ sslCert=/usr/share/certs/{{<hl>}}example.org{{</hl>}}/fullchain.pem
 sslKey=/usr/share/certs/{{<hl>}}example.org{{</hl>}}/privkey.pem
 ```
 
+Make sure to give appropriate file permissions to `mumble-user`:
+
+```sh
+chown -R mumble-user:mumble-user /usr/share/certs/{{<hl>}}example.org{{</hl>}}
+```
+
 ### Public Directory
 
 If you wish, you may publish your Mumble server to the public server directory accessible in the default Mumble client:
