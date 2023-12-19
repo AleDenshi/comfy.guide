@@ -56,6 +56,11 @@ Find the line `VirtualHost "localhost"` and replace `localhost` with your domain
 
 Obviously, we want to have client-to-server and server-to-server encryption. We can use Certbot to generate certificates and use a convenient command below `prosodyctl` to import them.
 
+For added security, begin by installing the `lua-unbound` library for DNS queries:
+```sh
+apt install lua-unbound
+```
+
 Include the `--nginx` option assuming you have an Nginx server running.
 
 ```sh
@@ -84,11 +89,11 @@ Note that you might get an error that a certificate has not been found if your `
 
 ### Database Setup
 
-Prosody includes the `internal` and `sql` storage backends by default. 
-If you wish to run Prosody with PostgreSQL, begin by installing the PostgreSQL:
+Prosody includes the `internal` and `sql` storage back-ends by default. 
+If you wish to run Prosody with PostgreSQL, begin by installing the PostgreSQL and the corresponding Lua library:
 
 ```sh
-apt install postgresql
+apt install postgresql lua-dbi-postgresql
 ```
 
 Then start the daemon:
@@ -208,7 +213,7 @@ Component "{{<hl>}}chat.example.org{{</hl>}}" "muc"
 
 On the first line, you must have a separate subdomain for your multi-user chats. The `chat.` subdomain is used here, but some servers use `muc.`. Anything is possible.
 
-> The `restrict_room_creation` line important because it prevents non-admins from creating and squatting rooms on your server. The only situation where you might not want that is if you indend to open a general public chat system for people you don't know.
+> The `restrict_room_creation` line important because it prevents non-admins from creating and squatting rooms on your server. The only situation where you might not want that is if you intend to open a general public chat system for people you don't know.
 
 Read more about the `muc` plugin on the Prosody documentation page [here](https://prosody.im/doc/modules/mod_muc).
 
@@ -251,7 +256,7 @@ At this point, file sharing is now setup and ready for pretty much all use cases
 
 ### Pub-Sub Support {#pubsub}
 
-Publish-Subscribe (also known as Pubsub) is a simple protocl that allows data to be published to "nodes"; Think of these as mini-blogs that can be published over XMPP. New posts on these nodes will be automatically pushed to subscribers directly, unlike RSS which requires the user to poll the feed itself.
+Publish-Subscribe (also known as Pubsub) is a simple protocol that allows data to be published to "nodes"; Think of these as mini-blogs that can be published over XMPP. New posts on these nodes will be automatically pushed to subscribers directly, unlike RSS which requires the user to poll the feed itself.
 
 To setup a Pubsub component, add the following lines to your Prosody config:
 
@@ -264,6 +269,12 @@ Having a Pubsub component will allow your server to participate in the wider XMP
 ## Community Modules
 
 Prosody configuration can go far beyond the included modules. There are many [community modules](https://modules.prosody.im/), and Prosody comes with a community module installer built-in on version 0.12 and above.
+
+To install community modules, you need to first install [Luarocks](https://luarocks.org/):
+
+```sh
+apt install luarocks
+```
 
 ### Push Notifications
 
@@ -319,12 +330,12 @@ Component "{{<hl>}}chat.example.org{{</hl>}}" "muc"
 ```
 
 
-### Pubsub RSS Feed Mirrorring
+### Pubsub RSS Feed Mirroring
 
 If you've setup a [Pubsub component](#pubsub), you can enable a community module to automatically grab RSS feeds and publish their contents to a Pubsub node of your choosing. Simply install the community module:
 
 ```sh
-sudo prosodyctl install --server=https://modules.prosody.im/rocks/ mod_pubsub_feeds
+prosodyctl install --server=https://modules.prosody.im/rocks/ mod_pubsub_feeds
 ```
 
 And enable it under the Pubsub component:
@@ -351,7 +362,7 @@ feed_pull_interval_seconds = 900
 
 #### Granting Ownership on Module-Created Pubsub Nodes
 
-By default, Pubsub nodes created by the `pubsub_feeds` module will not be owned by anyone, not even the srever admin. To change this, use the Prosody shell to run a lua command using [`util.pubsub`](https://prosody.im/doc/developers/util/pubsub) granting you ownership:
+By default, Pubsub nodes created by the `pubsub_feeds` module will not be owned by anyone, not even the server admin. To change this, use the Prosody shell to run a lua command using [`util.pubsub`](https://prosody.im/doc/developers/util/pubsub) granting you ownership:
 
 ```sh
 ## Enter the Prosody shell
