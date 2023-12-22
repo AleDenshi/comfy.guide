@@ -11,6 +11,14 @@ author: Denshi
 
 SQL is a standardized language for database management. This article is a "cheat sheet" of sorts, helping you with the sematics of database engines such as MySQL and PostgreSQL.
 
+## Note on Encoding
+
+While a manual server setup will normally ensure a proper locale is installed, some VPS providers and default server ISOs may need further configuration to make sure all data is encoded correctly on your server. Before installing any database engine, ensure your server is using the proper encoding locale.
+
+Simply run the command `dpkg-reconfigure locales` and select the desired locale from the text menu. `en_US.UTF-8` is the default for the english-speaking US.
+
+> Reboot for these changes to take effect.
+
 ## MySQL
 MySQL is one of the most popular and oldest database software still around today in modern hosting. **MariaDB** is a community-developed fork of MySQL which works almost exactly the same, but with additional security and stability improvements.
 

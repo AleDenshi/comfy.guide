@@ -266,6 +266,54 @@ Component "{{<hl>}}pubsub.example.org{{</hl>}}" "pubsub"
 
 Having a Pubsub component will allow your server to participate in the wider XMPP Pubsub social network, mainly utilized by the [Movim](https://movim.eu) client.
 
+## Included Modules
+
+Prosody includes a variety of modules out of the box to enable and configure.
+
+### Bosh and Websockets
+
+These two modules allow web-based clients to interface with your server. Begin by installing the required bitop library:
+
+```sh
+apt install lua-bitop
+```
+
+Then enable the module under `modules_enabled`:
+```lua
+modules_enabled = {
+...
+        "bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+        "websocket"; -- XMPP over WebSockets
+...
+}
+```
+
+### Tombstones
+
+This module leaves a "tombstone" of a users account after it is deleted. This makes it impossible for another user to register an account and impersonate the original user and the original account was deleted.
+
+```lua
+modules_enabled = {
+...
+        "tombstones"; -- Prevent registration of deleted accounts
+...
+}
+```
+
+### Mimicking
+
+Because unicode is prone to similarly-looking characters that can be used to spoof usernames, this module helps equate these and prevent people from making similar usernames. Simply enable it in `/etc/prosody/prosody.cfg.lua`:
+
+```lua
+modules_enabled = {
+...
+        "mimicking"; -- Prevent address spoofing
+...
+}
+```
+
+To send announcements
+
 ## Community Modules
 
 Prosody configuration can go far beyond the included modules. There are many [community modules](https://modules.prosody.im/), and Prosody comes with a community module installer built-in on version 0.12 and above.
