@@ -52,41 +52,6 @@ Note that we have not created these accounts yet, we will do this [below](#user)
 
 Find the line `VirtualHost "localhost"` and replace `localhost` with your domain. In our case, we will have `VirtualHost "example.org"`
 
-### Certificates
-
-Obviously, we want to have client-to-server and server-to-server encryption. We can use Certbot to generate certificates and use a convenient command below `prosodyctl` to import them.
-
-For added security, begin by installing the `lua-unbound` library for DNS queries:
-```sh
-apt install lua-unbound
-```
-
-Include the `--nginx` option assuming you have an Nginx server running.
-
-```sh
-certbot -d {{<hl>}}example.org{{</hl>}} --nginx
-```
-
-It's essential to obtain **any other certificates** for [additional services](#components) on your server. For example, here are two certificates for subdomains hosting multi-user chats, file sharing and a proxy service respectively:
-
-```sh
-certbot -d {{<hl>}}chat.example.org{{</hl>}} --nginx
-certbot -d {{<hl>}}uploads.example.org{{</hl>}} --nginx
-certbot -d {{<hl>}}proxy.example.org{{</hl>}} --nginx
-```
-
-Once you have all your certificates for encryption, run the following to import them into Prosody:
-
-```sh
-prosodyctl --root cert import /etc/letsencrypt/live/
-```
-
-> You can re-run the `prosodyctl --root cert import` command again when you need to renew or change certificates. It will always attempt to get the latest certificates needed by your current configuration in `/etc/prosody/prosody.cfg.lua`, and will inform you if it can't access them.
-
-Note that you might get an error that a certificate has not been found if your `muc` subdomain and your main domain share a certificate. It should still work, this is just notifying you that no specific certificate for the subdomain.
-
-**Note:** The above command will need to be rerun when certificates are renewed. You may want to create a [cronjob](/server/cron) to have this done automatically.
-
 ### Database Setup
 
 Prosody includes the `internal` and `sql` storage back-ends by default. 
@@ -265,6 +230,42 @@ Component "{{<hl>}}pubsub.example.org{{</hl>}}" "pubsub"
 ```
 
 Having a Pubsub component will allow your server to participate in the wider XMPP Pubsub social network, mainly utilized by the [Movim](https://movim.eu) client.
+
+## Certificates
+
+Obviously, we want to have client-to-server and server-to-server encryption. We can use Certbot to generate certificates and use a convenient `prosodyctl` command to import them.
+
+For added security, begin by installing the `lua-unbound` library for DNS queries:
+```sh
+apt install lua-unbound
+```
+
+Run the following certbot command. Include the `--nginx` if you also have an [NGINX server](/server/nginx) running.
+
+```sh
+certbot -d {{<hl>}}example.org{{</hl>}} --nginx
+```
+
+It's essential to obtain **any other certificates** for [additional services](#components) on your server. For example, here are two certificates for subdomains hosting multi-user chats, file sharing, proxy and a Pub-Sub service respectively:
+
+```sh
+certbot -d {{<hl>}}chat.example.org{{</hl>}} --nginx
+certbot -d {{<hl>}}uploads.example.org{{</hl>}} --nginx
+certbot -d {{<hl>}}proxy.example.org{{</hl>}} --nginx
+certbot -d {{<hl>}}pubsub.example.org{{</hl>}} --nginx
+```
+
+Once you have all your certificates for encryption, run the following to import them into Prosody:
+
+```sh
+prosodyctl --root cert import /etc/letsencrypt/live/
+```
+
+> You can re-run the `prosodyctl --root cert import` command again when you need to renew or change certificates. It will always attempt to get the latest certificates needed by your current configuration in `/etc/prosody/prosody.cfg.lua`, and will inform you if it can't access them.
+
+Note that you might get an error that a certificate has not been found if your `muc` subdomain and your main domain share a certificate. It should still work, this is just notifying you that no specific certificate for the subdomain.
+
+**Note:** The above command will need to be rerun when certificates are renewed. You may want to create a [cronjob](/server/cron) to have this done automatically.
 
 ## Included Modules
 
