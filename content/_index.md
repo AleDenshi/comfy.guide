@@ -1,5 +1,5 @@
 ---
-title: Comfy Guides
+title: Comfy.Guide
 date: 2023-09-05
 ---
 

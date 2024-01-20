@@ -1,5 +1,5 @@
 <h1>{{ .Title }}</h1>
-{{ if ne .File.Path "_index.md" }}
+{{ if ne .RelPermalink "/" -}}
 <p style="text-align: center;"><a href="/">[ ← Back Home ]</a></p><br>
-{{ end }}
 <small>Last modified on {{ .Lastmod.Format "January 2, 2006" }}</small>
+{{- end }}
