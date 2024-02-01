@@ -1,78 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
-	--bg:	white;
-	--fg:	black;
-	--hl:	lightgray;
-	--ch:	blue;
+  --bg: #f5f5f5;
+  --fg: #000000;
+  --hl: #a1a2a8;
+  --ch: #8a9fff;
+  --bq: #e1e1e1;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--bg:	black;
-		--fg:	white;
-		--hl:	gray;
-		--ch:	lightblue;
-	}
+  :root {
+    --bg: #0a0908;
+    --fg: #f8f8f8;
+    --hl: #a1a2a8;
+    --ch: #a9ddff;
+    --bq: #3f3f3f;
+  }
 }
 
 body {
-	background-color: var(--bg);
-	color: var(--fg);
-	width: 90%;
-	max-width: 80em;
-	margin: auto;
-	font-family: serif;
-	text-align: justify;
-	font-size: 1.1em;
-	overflow-wrap: break-word;
+  background-color: var(--bg);
+  color: var(--fg);
+  width: 90%;
+  max-width: 80em;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+  text-align: justify;
+  font-size: 1.1em;
+  line-height: 1.3em;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
-	text-align: center;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 a {
-	color: var(--ch);
+  color: var(--ch);
+  text-decoration: none;
 }
 
 a:hover {
-	color: var(--hl)
+  color: var(--hl);
 }
 
 img {
-	max-width: 100%;
-	max-height: 35em;
-	display: block;
-	margin: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 blockquote {
-	background: var(--hl);
-	padding: 0.1em 1em;
+  background: var(--bq);
+  padding: 0.1em 1em;
+  margin: 1em 0;
 }
 
 pre {
-	padding: 0.5em 1em;
-	white-space: pre-wrap;
-	text-align: left;
-	border: solid 2px var(--hl);
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
+  padding: 0.5em 1em;
+  white-space: pre-wrap;
+  text-align: left;
+  border: solid 2px var(--hl);
+  overflow-wrap: break-word;
+  margin: 1em 0;
 }
 
 footer img {
-	display: inline-block;
-	height: 1.5em;
+  display: inline-block;
+  height: 1.5em;
 }
 
 .pages {
-	border-collapse: collapse;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1em;
 }
 
-.pages th,td {
-	border-bottom:  var(--fg) 1px solid;
-	padding: 0.25em;
+.pages th,
+.pages td {
+  border-bottom: var(--fg) 1px solid;
+  padding: 0.5em;
 }
 
 .pages img {
-	max-height: 2em;
+  max-height: 2em;
 }
