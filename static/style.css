@@ -1,16 +1,18 @@
 :root {
-	--bg:	white;
-	--fg:	black;
-	--hl:	lightgray;
-	--ch:	blue;
+	--bg: #eee;
+	--fg: #222;
+	--hl: lightgray;
+	--ch: blue;
+	--wrn: #f44;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg:	black;
-		--fg:	white;
-		--hl:	gray;
-		--ch:	lightblue;
+	--bg: #222;
+	--fg: #eee;
+	--hl: gray;
+	--ch: lightblue;
+	--wrn: #f44;
 	}
 }
 
@@ -20,8 +22,8 @@ body {
 	width: 90%;
 	max-width: 80em;
 	margin: auto;
-	font-family: serif;
 	text-align: justify;
+	font-family: arial;
 	font-size: 1.1em;
 	overflow-wrap: break-word;
 }
@@ -35,7 +37,7 @@ a {
 }
 
 a:hover {
-	color: var(--hl)
+	color: var(--hl);
 }
 
 img {
@@ -46,7 +48,7 @@ img {
 }
 
 blockquote {
-	background: var(--hl);
+	background: var(--wrn);
 	padding: 0.1em 1em;
 }
 
@@ -68,8 +70,8 @@ footer img {
 	border-collapse: collapse;
 }
 
-.pages th,td {
-	border-bottom:  var(--fg) 1px solid;
+.pages th, td {
+	border-bottom: var(--fg) 1px solid;
 	padding: 0.25em;
 }
 
