@@ -1,18 +1,16 @@
 :root {
-	--bg: #eee;
-	--fg: #222;
+	--bg: #fff;
+	--fg: #000;
 	--hl: lightgray;
 	--ch: blue;
-	--wrn: #f44;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-	--bg: #222;
-	--fg: #eee;
-	--hl: gray;
-	--ch: lightblue;
-	--wrn: #f44;
+		--bg: #0d0d0d;
+		--fg: #fff;
+		--hl: gray;
+		--ch: lightblue;
 	}
 }
 
@@ -22,8 +20,8 @@ body {
 	width: 90%;
 	max-width: 80em;
 	margin: auto;
+	font-family: serif;
 	text-align: justify;
-	font-family: arial;
 	font-size: 1.1em;
 	overflow-wrap: break-word;
 }
@@ -48,7 +46,7 @@ img {
 }
 
 blockquote {
-	background: var(--wrn);
+	background: var(--hl);
 	padding: 0.1em 1em;
 }
 
@@ -70,7 +68,7 @@ footer img {
 	border-collapse: collapse;
 }
 
-.pages th, td {
+.pages th,td {
 	border-bottom: var(--fg) 1px solid;
 	padding: 0.25em;
 }

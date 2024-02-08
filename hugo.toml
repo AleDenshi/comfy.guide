@@ -4,6 +4,3 @@ title = 'Comfy Guides'
 
 [params]
 	git = 'https://github.com/AleDenshi/comfy.guide'
-
-[markup.goldmark.renderer]
-	unsafe = true
