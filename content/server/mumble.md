@@ -7,7 +7,7 @@ icon: mumble.svg
 ports: [64738]
 
 ## Author Information
-author: denshi
+author: Denshi
 ---
 
 [Mumble](https://www.mumble.info/) is a light and high-quality libre voice chat protocol. You can self-host your own Mumble server and control your conversations.
