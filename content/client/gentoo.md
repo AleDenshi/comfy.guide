@@ -187,7 +187,8 @@ Let's make our new user. There is a utility called `useradd` which we can use to
 ### Making our user administrator
 Let's make our user a ***SUPER USER***! We will need to edit our sudoers file, run `EDITOR=nano visudo` to set the preferred editor to nano, and edit the sudoers file.
 
-Scroll down until you see `%wheel ALL=(ALL) ALL`.
+Scroll down until you see `#%wheel ALL=(ALL) ALL`.
+Remove the # at the beginning of the line.
 ### The last step (Cleaning our drive and rebooting)
 Navigate to the root directory in our chroot, just run `cd /`. Now, let's clean up our downloaded stage 3 tarball. Run `rm /stage3*`.
 
