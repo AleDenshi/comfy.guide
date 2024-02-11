@@ -71,7 +71,7 @@ You must configure the portage `make.conf` file to configure your make options. 
 
 `COMMON_FLAGS="-O2 -pipe -march=native"`. This sets the CPU architecture to whatever family processor you have, which makes the binaries tailored to your system only. Press CTRL+S and CTRL+X to exit the `nano` text editor. Remember the CTRL+S and CTRL+X part, we'll be using that to save and exit nano.
 ### Changing our Gentoo mirrors
-Navigate to the [Gentoo source mirror list](https://www.gentoo.org/downloads/mirrors/) and find the mirror that is closest to you. Copy the link and edit the portage make.conf by running `nano /mnt/gentoo/etc/portage/make.conf`. Then, at the bottom of the file, add:
+Navigate to the [Gentoo source mirror list](https://www.gentoo.org/downloads/mirrors/) and find the mirror that is closest to you. Copy the link and edit the portage make.conf by running `nano /mnt/gentoo/etc/portage/make.conf`. Then, under MAKEOPTS add:
 
 `GENTOO_MIRRORS="LINK TO MIRROR"`
 
