@@ -15,9 +15,9 @@ author: hdfsyu
 
 draft: false
 ---
-[Gentoo](gentoo.org) is a source based Linux Distro focused on versatility and minimalistic design. It's install is fully manual and runs on the OpenRC/systemd init system. It uses the `emerge/Portage` package manager/build system which compiles everything from source, including the kernel. This tutorial will only be focusing on: ***Setting up our computer for Linux, installing gentoo via the Stage 3 Tarball, installing the Linux kernel, and installing our necessary extra system tools.***
+[Gentoo](https://gentoo.org) is a source based Linux Distro focused on versatility and minimalistic design. It's install is fully manual and runs on the OpenRC/systemd init system. It uses the `emerge/Portage` package manager/build system which compiles everything from source, including the kernel. This tutorial will only be focusing on: ***Setting up our computer for Linux, installing gentoo via the Stage 3 Tarball, installing the Linux kernel, and installing our necessary extra system tools.***
 ## Requirements
-A USB/Flash drive which has [Linux Mint](linuxmint.com) or an existing Linux (preferably debian-based) distro install.
+A USB/Flash drive which has [Linux Mint](https://linuxmint.com) or an existing Linux (preferably debian-based) distro install.
 
 A basic knowledge of Linux and the command line.
 
