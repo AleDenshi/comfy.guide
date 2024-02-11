@@ -200,4 +200,4 @@ Type `exit` and press enter in your terminal...
 and run the command `reboot`.
 
 ## Congratulations!
-You now have a working Gentoo system! Use the nmtui command and `emerge` to install your favorite packages! You have now installed Gentoo Linux.
+You now have a working Gentoo system! Use the nmtui to connect to networks, and the `emerge` command to install your favorite packages! You have now installed Gentoo Linux.
