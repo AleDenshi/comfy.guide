@@ -34,7 +34,7 @@ Let's create our EFI boot drive, scroll down to the New button using your arrow 
 Now, let's create our swap drive. Do the same procedure as the EFI partition, but this time make the size double/the actual size of your PC's RAM.
 ### Creating our root partition.
 This is the easiest, first do the same procedure, then press enter (Do not edit the size, keep it default). This will take all the empty space and create a parition using the remaining space of our drive.
-Scroll down to write, type `yes` and exit cfdisk.
+Scroll down to write, type `yes` and quit cfdisk.
 ## Formatting our partitions
 Run the `lsblk` command to list your block devices (hard drives), choose the appropriate hard drive. You can tell by looking at the `TYPE` and making sure it is disk, usually the biggest drive is your installation drive. Note down the name of your drive, usually `/dev/`*id*
 ### Formatting our root partition
