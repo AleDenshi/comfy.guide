@@ -25,7 +25,7 @@ A basic knowledge of Linux and the command line.
 ## Partitioning our hard drive
 To get started with installing gentoo, switch to the root user using the `sudo su` command. We have now switched to the root user, we are going to run the `cfdisk` interactive disk partition utility.
 ### Creating our EFI boot partition.
-Let's create our EFI boot drive, scroll down to the New button using your arrow keys and create a new 100MB partition, do this by writing 100M when cfdisk asks you for the size.
+Let's create our EFI boot drive, scroll down to the New button using your arrow keys and create a new 512MB partition, do this by writing 512M when cfdisk asks you for the size.
 ### Creating our Linux swap partition.
 Now, let's create our swap drive. Do the same procedure as the EFI partition, but this time make the size double/the actual size of your PC's RAM.
 ### Creating our root partition.
