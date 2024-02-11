@@ -21,9 +21,13 @@ A USB/Flash drive which has [Linux Mint](https://linuxmint.com) or an existing L
 
 A basic knowledge of Linux and the command line.
 
-**Recommended** A wired internet connection (Ethernet).
+An internet connection.
+
+**Recommended** A *wired* internet connection (Ethernet).
 ## Partitioning our hard drive
 To get started with installing gentoo, switch to the root user using the `sudo su` command. We have now switched to the root user, we are going to run the `cfdisk` interactive disk partition utility.
+
+Delete all the partitions that you have right now using the Delete option.
 ### Creating our EFI boot partition.
 Let's create our EFI boot drive, scroll down to the New button using your arrow keys and create a new 512MB partition, do this by writing 512M when cfdisk asks you for the size.
 ### Creating our Linux swap partition.
@@ -34,11 +38,11 @@ Scroll down to write, type `yes` and exit cfdisk.
 ## Formatting our partitions
 Run the `lsblk` command to list your block devices (hard drives), choose the appropriate hard drive. You can tell by looking at the `TYPE` and making sure it is disk, usually the biggest drive is your installation drive. Note down the name of your drive, usually `/dev/`*id*
 ### Formatting our root partition
-Run the following command to format our root partition as Ext4: `mkfs.ext4 /dev/`*id*, where *id* is your disk specifier.
+Run the following command to format our root partition as Ext4: `mkfs.ext4 /dev/`*root*, where *root*, *efi* or *swap* is your disk specifier.
 ### Formatting our EFI partition
-Run the following command to format our EFI parition as FAT32: `mkfs.fat -F 32 /dev/`*id*.
+Run the following command to format our EFI parition as FAT32: `mkfs.fat -F 32 /dev/`*efi*.
 ### Formatting our swap partition
-Run the following command to format our swap partition as swap: `mkswap /dev`*id*.
+Run the following command to format our swap partition as swap: `mkswap /dev`*swap*.
 ## Mounting our partitions
 First, we'll need to create the `/mnt/gentoo` mountpoint, make the directory /mnt/gentoo using `mkdir /mnt/gentoo`.
 ### Mounting our root partition
