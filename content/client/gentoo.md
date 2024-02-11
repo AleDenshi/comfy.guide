@@ -176,7 +176,7 @@ We are going to edit the `/etc/hosts` file really quickly, just adding one line.
 ### Setting our root password
 Now we will add a bit of security to our install using passwords. Just run the `passwd` command and type your password twice, once for input and twice for confirmation.
 ### Installing more required packages
-Just run `emerge --ask networkmanager sudo efibootmgr grub`. This will install our bootloader, which is GRUB, enable support for EFI and internet support. Run this command.
+Just run `emerge --ask networkmanager sudo efibootmgr grub`. This will install our bootloader, which is GRUB, enable support for EFI and internet support. Run this command. Then run `rc-update add NetworkManager default` to start networkmanager on startup.
 ### Installing our bootloader
 The bootloader is what loads our system. First, let's install the bootloader, then configure it. Run `grub-install /dev/`*id*. In this case my device id is `sda` so I will run `grub-install /dev/sda`. Now, let's *configure* the GRUB bootloader.
 
