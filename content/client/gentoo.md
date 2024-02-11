@@ -155,7 +155,7 @@ This is possible, but ***very*** tedious and time consuming. In this tutorial, w
 ### Downloading the binary kernel
 We're not even compiling the kernel, so this will take very minimal time.
 
-First, we'll need to download the kernel binary. Run `emerge --ask sys-kernel/installkernel-gentoo` to install the `installkernel` command, this command will help up install the kernel automatically. Now, we'll download the precompiled kernel image using emerge, run `emerge --ask sys-kernel/gentoo-kernel-bin` to install the binary kernel.
+First, we'll need to download the kernel binary. Run `emerge --ask sys-kernel/installkernel` to install the `installkernel` command, this command will help up install the kernel automatically. Now, we'll download the precompiled kernel image using emerge, run `emerge --ask sys-kernel/gentoo-kernel-bin` to install the binary kernel.
 ### Installing linux-firmware
 Now, we are going to install drivers for our hardware. We can quickly do this by running `emerge --ask sys-kernel/linux-firmware`.
 ## Finalizing and adding extra packages to our system
