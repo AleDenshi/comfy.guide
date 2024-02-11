@@ -82,7 +82,7 @@ This doesn't really have a category, but quickly copy your DNS info to the gento
 ## Entering the Gentoo root file system.
 We are now entering our newly installed system.
 ### Mounting all our file systems
-We are going to mount our `/proc/, /sys, /dev/ and /run` file systems using a list of commands. These list of commands are:
+We are going to mount our `/proc/, /sys, /dev/ and /run` file systems using a list of commands. This list of commands are:
 
 - `mount --types proc /proc /mnt/gentoo/proc`
 
@@ -101,7 +101,7 @@ We are going to mount our `/proc/, /sys, /dev/ and /run` file systems using a li
 Just copy and paste those commands into your terminal.
 
 ### Fixing /dev/shm's symbolic link
-There is a /run/shm symbolic link in Linux Mint which points to /dev/shm, we will need to remove this. Run these list of commands:
+There is a /run/shm symbolic link in Linux Mint which points to /dev/shm, we will need to remove this. Run this list of commands:
 
 - `test -L /dev/shm && rm /dev/shm && mkdir /dev/shm`
 
