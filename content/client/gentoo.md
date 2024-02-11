@@ -51,11 +51,11 @@ Our root partition will be mounted at `/mnt/gentoo`, we can mount it at `/mnt/ge
 Since we already have /mnt/gentoo, we will mount our boot partition at `/mnt/gentoo/boot/efi`. However, the boot nor the efi sub-directories have been made yet. We can create these directories using `mkdir -p /mnt/gentoo/boot/efi`, and then mounting our EFI parition using `mount /dev/`*efi partition*` /mnt/gentoo/boot/efi`
 ### Mounting/Activating our swap partition
 This is the easiest step, just run `swapon /dev/*swap partition*`, and this will activate your swap partition.
-We can run `lsblk` to see all our partitions mounted. Your swap partition should have [SWAP] next to it, your root partition should have /mnt/gentoo and your EFI partition should have /mnt/gentoo/boot/efi. We have now set up our PC for Linux, we are now going to install the base Gentoo files using the Stage 3 Tarball.
+We can run `lsblk` to see all our partitions mounted. Your swap partition should have [SWAP] next to it, your root partition should have /mnt/gentoo and your EFI partition should have /mnt/gentoo/boot/efi. We now have to set up our PC for Linux, we are now going to install the base Gentoo files using the Stage 3 Tarball.
 ## Installing Gentoo Linux via the Stage 3 Tarball.
 Since we are *not* using the gentoo minimal LiveCD, we can easily `wget` the tarball. But, we will need to configure our date for SSL/HTTPS downloads.
 ### Configuring the date & time
-The `date` command shows us the current time, date and timezone. If these are wrong, set the date by using the following command, and subsitute the command with your date and time.
+The `date` command shows us the current time, date and timezone. If these values are wrong, set the date by using the following command, and subsitute the command with your date and time.
 
 `date MMDDhhmmYYYY`
 
