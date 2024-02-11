@@ -164,9 +164,7 @@ Run nano and edit /etc/fstab, run `nano /etc/fstab`. The three lines saying `efi
 ### Creating our hostname
 Let's quickly create our hostname, all we need to do is write our hostname in the `/etc/hostname` file. Do this by running this command: `echo "YOURHOSTNAME" > /etc/hostname`. This will write whatever `echo` outputs to /etc/hostname, in this case "YOURHOSTNAME". I want to set my hostname to `gentooey`, so I will run `echo "gentooey" > /etc/hostname`. Run `cat /etc/hostname` to confirm your hostname is in the file.
 ### Change the hosts file
-We are going to edit the `/etc/hosts` file really quickly, just adding one line. Run nano using this command and edit the /etc/hosts file: `nano /etc/hosts`. Above the line that says
-
-`127.0.0.1   localhost`, write
+We are going to edit the `/etc/hosts` file really quickly, just adding one line. Run nano using this command and edit the /etc/hosts file: `nano /etc/hosts`. Above the line that says `127.0.0.1   localhost`, write
 
 `127.0.0.1   YOURHOSTNAME`. Since my hostname is `gentooey`, I will write
 
@@ -180,7 +178,7 @@ The bootloader is what loads our system. First, let's install the bootloader, th
 
 We can automatically generate this, just run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the GRUB config.
 ### Making our user account
-We have to make this our main machine! Let's make our new user. There is a utility called `useradd` which we can use to make our user account. Just run these commands, and replace YOURUSERNAME with your desired username.
+Let's make our new user. There is a utility called `useradd` which we can use to make our user account. Just run these commands, and replace YOURUSERNAME with your desired username.
 
 - `useradd -m -G audio,cdrom,floppy,portage,usb,video,wheel -s /bin/bash YOURUSERNAME`
 
