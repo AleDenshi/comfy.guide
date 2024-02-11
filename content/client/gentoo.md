@@ -18,7 +18,9 @@ draft: true
 [Gentoo](gentoo.org) is a source based Linux Distro focused on versatility and minimalistic design. It's install is fully manual and runs on the OpenRC/systemd init system. It uses the `emerge` package manager which compiles everything from source, including the kernel. This tutorial will only be focusing on: ***Setting up our computer for Linux, installing gentoo via the Stage 3 Tarball, installing the Linux kernel, and installing our necessary extra system tools.***
 ## Requirements
 A USB/Flash drive which has [Linux Mint](linuxmint.com) or an existing Linux (preferably debian-based) distro install.
+
 A basic knowledge of Linux and the command line.
+
 **Recommended** A wired internet connection (Ethernet).
 ## Partitioning our hard drive
 To get started with installing gentoo, switch to the root user using the `sudo su` command. We have now switched to the root user, we are going to run the `cfdisk` interactive disk partition utility.
