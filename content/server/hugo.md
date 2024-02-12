@@ -5,6 +5,7 @@ description:
 icon: hugo.svg
 date: 2024-02-02T11:23:38+05:30
 #ports: [80, 443]
+draft: true
 
 ## Author Information
 author: Pratham
