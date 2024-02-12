@@ -5,6 +5,7 @@ description: A minimalistic Linux distro made for tinkerers.
 icon: gentoo.svg
 date: 2024-02-10T22:28:57-05:00
 #ports: [80, 443]
+draft: true
 
 ## Author Information
 author: hdfsyu
