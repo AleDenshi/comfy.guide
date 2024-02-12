@@ -5,7 +5,6 @@ description: A minimalistic Linux distro made for tinkerers.
 icon: gentoo.svg
 date: 2024-02-10T22:28:57-05:00
 #ports: [80, 443]
-draft: true
 
 ## Author Information
 author: hdfsyu
@@ -14,7 +13,7 @@ author: hdfsyu
 #matrix:
 #monero:
 
-draft: false
+draft: true
 ---
 [Gentoo](https://gentoo.org) is a source based Linux Distro focused on versatility and minimalistic design. It's install is fully manual and runs on the OpenRC/systemd init system. It uses the `emerge/Portage` package manager/build system which compiles everything from source, including the kernel. This tutorial will only be focusing on: ***Setting up our computer for Linux, installing gentoo via the Stage 3 Tarball, installing the Linux kernel, and installing our necessary extra system tools.***
 ## Requirements
