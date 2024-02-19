@@ -96,7 +96,7 @@ Dendrite has no official distribution packages at the time of writing. To instal
 
 First, download the latest Go tarball:
 ```sh
-curl -fLO "https://dl.google.com/go/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz"
+curl -fLO "https://dl.google.com/go/$(curl https://go.dev/VERSION?m=text | sed 1q).linux-amd64.tar.gz"
 ```
 
 Then, extract the contents to `/usr/local`, which will create the directory `/usr/local/go`:
