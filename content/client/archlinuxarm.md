@@ -86,9 +86,11 @@ Run the command `lsblk` to list the connected hard drives and locate the hard dr
 You can format it with `cfdisk` or `fdisk`. I will only be showing you how to use `fdisk`, but `cfdisk` is more intuitive.
 
 If you wish to use `cfdisk` or any other partitioning tool, you'll need the following partitions:
-1. FAT32 (LBA) of size 200M
+1. FAT32 (LBA) of size 300M
 2. (optionally) SWAP of whatever size you wish
 2. EXT4 to fill up the rest of the space
+
+The first partition is the boot partition. It should be at least 200M but I suggest going higher. In fact I just broke my Raspberry Pi because the boot partition wasn't large enough for the latest kernel update.
 
 ```
 fdisk /dev/<hard drive name>
@@ -98,7 +100,7 @@ n to create a new partition
 p for primary
 ENTER to accept default partition number, should be 1
 ENTER to accept the default first sector
-+200M to specify 200 megabytes for the last sector
++300M to specify 300 megabytes for the last sector
 t for type, then c to specify FAT32 (LBA)
 
 n then p to create a second priamry partition

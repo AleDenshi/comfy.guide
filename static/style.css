@@ -1,16 +1,16 @@
 :root {
-	--bg: #fff;
-	--fg: #000;
-	--hl: lightgray;
-	--ch: blue;
+	--bg:	white;
+	--fg:	black;
+	--hl:	lightgray;
+	--ch:	blue;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #0d0d0d;
-		--fg: #fff;
-		--hl: gray;
-		--ch: lightblue;
+		--bg:	black;
+		--fg:	white;
+		--hl:	gray;
+		--ch:	lightblue;
 	}
 }
 
