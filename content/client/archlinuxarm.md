@@ -4,7 +4,7 @@ title: "Arch Linux ARM"
 description: How to install Arch Linux ARM, with additional steps for installing on a Raspberry Pi 4/5.
 icon: archlinux.svg
 date: 2024-02-02T09:20:31+10:00
-
+draft: true
 ## Author Information
 author: zacoons
 email: zac@zacoons.com
