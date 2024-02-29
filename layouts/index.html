@@ -1,27 +1,33 @@
 {{ define "main" }}
 {{ .Content }}
 
+<div class="columns">
 {{ range .Site.Sections }}
-	<h2 style="text-align: center;">{{ .Title }}</h2>
+	<div class="block">
+	<h2>{{ .Title }}</h2>
+	<p>{{ .Content }}</p>
 	<table class="pages">
 	<th></th>
-	<th>Title</th>
-	<th>Description</th>
-
+	<th></th>
 	{{ range .RegularPages }}
 	<tr>
 		<td>
 			<a href="{{ .Permalink }}">
-				{{ with .Params.icon }}<img src="/icons/{{ . }}"/>{{ end }}
+			{{ with .Params.icon }}<img src="/icons/{{ . }}"/>{{ end }}
 			</a>
 		</td>
-		<td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
-		<td>{{ with .Params.description }}{{ . }}{{ end }}</td>
+		<td>
+			<p><a href="{{ .Permalink }}">{{ .Title }}</a></br>
+			{{ with .Params.description }}{{ . }}{{ end }}</p>
+		</td>
 	</tr>
 	{{ end }}
-
 </table>
+	</div>
+	<br/>
 {{ end }}
+
+</div>
 
 
 {{ end }}

@@ -1,15 +1,15 @@
 :root {
 	--bg:	#FEF9FF;
 	--fg:	#1B1C22;
-	--hl:	#d9d2db;
+	--hl:	#c3c2c4;
 	--ch:	#5f6ed3;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg:	#1B1C22;
-		--fg:	#FEF9FF;
-		--hl:	#8d8a8e;
+		--bg:	#1e1e1e;
+		--fg:	#bdbdbd;
+		--hl:	#656266;
 		--ch:	#48B8D0;
 	}
 }
@@ -18,14 +18,15 @@ body {
 	background-color: var(--bg);
 	color: var(--fg);
 	width: 90%;
-	max-width: 80em;
+	max-width: 65em;
 	margin: auto;
-	font-family: sans-serif;
+	font-family: monospace;
 	text-align: justify;
-	font-size: 1.1em;
+	font-size: 1.3em;
 }
 
 h1 {
+	font-size: 2.6em;
 	text-align: center;
 }
 
@@ -46,8 +47,10 @@ img {
 }
 
 blockquote {
+	margin: auto;
 	background: var(--hl);
 	padding: 0.1em 1em;
+	width: 90%;
 }
 
 pre {
@@ -65,16 +68,42 @@ footer img {
 
 .pages {
 	margin: 0 auto;
+	width: 100%;
 	text-align: left;
 	border-collapse: collapse;
 }
 
 .pages th,td {
-	border-bottom: var(--hl) 1px solid;
-	padding: 0.5em;
+	border-bottom: var(--hl) 1px dashed;
+	padding: 0em 0.5em;
 }
 
 .pages img {
 	max-height: 2rem;
 	max-width: 2rem;
 }
+
+.block {
+	width: 100%;
+	break-inside: avoid;
+}
+
+.columns {
+	columns: 2;
+	column-gap: 2em;
+}
+	
+.columns h2 {
+margin-top: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+	body {
+		width: 90%;
+	}
+	
+	.columns {
+		columns: 1;
+	}
+}
+
