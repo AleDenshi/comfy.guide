@@ -18,10 +18,9 @@ body {
 	background-color: var(--bg);
 	color: var(--fg);
 	width: 90%;
-	max-width: 65em;
+	max-width: 60em;
 	margin: auto;
 	font-family: monospace;
-	text-align: justify;
 	font-size: 1.3em;
 }
 
