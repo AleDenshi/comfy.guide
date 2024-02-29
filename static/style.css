@@ -1,16 +1,16 @@
 :root {
-	--bg:	white;
-	--fg:	black;
-	--hl:	lightgray;
-	--ch:	blue;
+	--bg:	#FEF9FF;
+	--fg:	#1B1C22;
+	--hl:	#d9d2db;
+	--ch:	#5f6ed3;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg:	black;
-		--fg:	white;
-		--hl:	gray;
-		--ch:	lightblue;
+		--bg:	#1B1C22;
+		--fg:	#FEF9FF;
+		--hl:	#8d8a8e;
+		--ch:	#48B8D0;
 	}
 }
 
@@ -20,10 +20,9 @@ body {
 	width: 90%;
 	max-width: 80em;
 	margin: auto;
-	font-family: serif;
+	font-family: sans-serif;
 	text-align: justify;
 	font-size: 1.1em;
-	overflow-wrap: break-word;
 }
 
 h1 {
@@ -31,6 +30,7 @@ h1 {
 }
 
 a {
+	text-decoration: none;
 	color: var(--ch);
 }
 
@@ -52,11 +52,10 @@ blockquote {
 
 pre {
 	padding: 0.5em 1em;
-	white-space: pre-wrap;
 	text-align: left;
 	border: solid 2px var(--hl);
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
+	line-break: anywhere;
+	white-space: pre-wrap !important;
 }
 
 footer img {
@@ -65,14 +64,17 @@ footer img {
 }
 
 .pages {
+	margin: 0 auto;
+	text-align: left;
 	border-collapse: collapse;
 }
 
 .pages th,td {
-	border-bottom: var(--fg) 1px solid;
-	padding: 0.25em;
+	border-bottom: var(--hl) 1px solid;
+	padding: 0.5em;
 }
 
 .pages img {
-	max-height: 2em;
+	max-height: 2rem;
+	max-width: 2rem;
 }

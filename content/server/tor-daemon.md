@@ -1,7 +1,7 @@
 ---
 ## Guide Information
 title: "TOR Daemon"
-description: Anonymizing network you can run any internet service on.
+description: Run a relay or a service on the largest anonymizing network.
 icon: tor.svg
 date: 2024-01-15T08:49:36-05:00
 ports: [9015, 9020]
@@ -11,9 +11,9 @@ author: denshi
 draft: true
 ---
 
-Tor, also known as "The Onion Router", is the most popular "anonymizing network" or "darknet". It works by relaying your internet traffic through various servers, ran by volunteers and encrypting the traffic with new keys for every "hop", thus creating various layers of encryption just like an onion.
+Tor, also known as "The Onion Router", is the most popular "anonymizing network" or "darknet". It works by relaying your internet traffic through various servers (ran by volunteers) and encrypting the traffic with new keys for every "hop", thus creating various layers of encryption just like an onion.
 
-This tutorial will cover 4 ways of running Tor on the server (please note, all of these may be run simultaneously if you wish!):
+This tutorial will cover 4 ways of running Tor on the server. (Note: all of these may be run simultaneously if you wish!)
 
 1. Running a "Hidden Service", a website accessible through the Tor network that anonymizes both the server and the client.
 
@@ -69,7 +69,7 @@ If you run Tor with the configuration above, it will generate a random secret ke
 
 You may choose to pre-generate a secret key for your website by using brute-force computation. This results in what's known as a "vanity" address, such as in the following example:
 
-```
+```sh
 {{<hl>}}alex{{</hl>}}kblxod5eo6d6rcpauirzbticc2fjzorun5bqyixmg23mk6b27byd.onion
 ```
 To accomplish this, a program named `mkp224o` can be installed.
@@ -167,16 +167,22 @@ To access your new hidden service, use the Tor browser or any other browser conn
 
 ![The hidden service, accessed on Tor browser.](2-website.png)
 
-## Middle/Guard Node
+## Middle/Guard Node {#middle}
 
 To setup a middle node, add the following to `/etc/tor/torrc`:
 
 ```sh
 Nickname    {{<hl>}}myNiceRelay{{</hl>}}  # Change "myNiceRelay" to something you like
 ContactInfo {{<hl>}}alex@example.org{{</hl>}}  # Write your e-mail and be aware it will be published
-ORPort      {{<hl>}}9015{{</hl>}}   # Pick any port you wish
-ExitRelay   0
-SocksPort   0            # Set this to 0 if you don't want to use this tor daemon to connect clients from your network
+ORPort      {{<hl>}}9015{{</hl>}}   # Pick any port you wish, but avoid 9001 as it is commonly flagged as Tor
+ExitRelay   0 # This is NOT an exit node, hence why this is 0
+SocksPort   0 # Set this to 0 if you don't want to use this tor daemon to connect clients from your network
+```
+
+Now simply restart the Tor daemon to start your middle node and contribute to the network:
+
+```sh
+systemctl restart tor
 ```
 
 ## Bridge Node
@@ -199,12 +205,12 @@ Then add the following configuration to `/etc/tor/torrc`:
 ## This may be duplicate information from the middle/guard bridge configuration
 Nickname    {{<hl>}}myKindBridge{{</hl>}}
 ContactInfo {{<hl>}}alex@example.org{{</hl>}}
-ORPort      {{<hl>}}9015{{</hl>}} # Pick any port you wish
+ORPort      {{<hl>}}9015{{</hl>}} # Pick any port you wish, but avoid 9001 as it is commonly flagged as Tor
 
 ## Enabling the obfs4 bridge itself
 BridgeRelay 1
 ServerTransportListenAddr obfs4 0.0.0.0:{{<hl>}}9020{{</hl>}}
-ExtORPort auto
+ExtORPort auto ## This is an alternative to the line above, setting an automatic port
 ```
 ### Obtaining the Bridge Line
 
@@ -247,4 +253,21 @@ Finally, the bridge will show up in your list of bridges, including a handy QR c
 
 ![The bridge shown, including emojis to signify the signature.](5-bridge.png)
 
+## Exit Node
 
+> As mentioned at the beginning of this article, **running an exit node can be dangerous.** Take all the ncessary precautions to inform your ISP about this before enabling this option. Do this at your own risk.
+
+To set up an exit node, simply set up a [Middle/Guard Node](#middle) and set the `ExitRelay` option to `1`:
+
+```sh
+ORPort 9015
+ExitRelay {{<hl>}}1{{</hl>}}
+```
+
+Simply restart the Tor daemon for changes to take effect:
+
+```sh
+systemctl restart Tor
+```
+
+Congratulations! You've successfully set up Tor.

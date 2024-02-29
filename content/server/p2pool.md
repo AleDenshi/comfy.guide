@@ -2,16 +2,15 @@
 ## Software Information
 title: P2Pool
 date: 2023-09-16
-draft: true
 icon: p2pool.svg
 description: Mine Monero on the decentralized P2Pool network.
-ports: [18081, 37889, 37888]
+ports: [18081, 37889, 37888, 3333]
 
 ## Author Information
 author: Denshi
 ---
 
-[P2Pool](https://github.com/SChernykh/p2pool) is a decentralized way to mine [Monero.](/server/monerod)
+[P2Pool](https://github.com/SChernykh/p2pool) is a decentralized service to mine [Monero.](/server/monerod) It works by making users attach the p2pool software to their existing Monero nodes, and mining through the port provided by the p2pool daemon.
 
 ## The need for P2Pool
 
@@ -41,28 +40,81 @@ systemctl restart monerod
 
 ## Installation
 
-Begin by installing the build requirements for p2pool:
+Begin by downloading and extracting the binary:
 
 ```sh
-apt update
-apt install git build-essential cmake libuv1-dev libzmq3-dev libsodium-dev libpgm-dev libnorm-dev libgss-dev libcurl4-openssl-dev libidn2-0-dev
-```
+baseurl="https://github.com/SChernykh/p2pool/releases"
+ver=$(basename "$(curl -w "%{url_effective}\n" -I -L -s -S $baseurl/latest -o /dev/null)")
 
-Then clone the repository and build p2pool:
-
-```sh
-git clone --recursive https://github.com/SChernykh/p2pool
-cd p2pool
-mkdir build && cd build
-cmake ..
-make -j$(nproc)
+curl -fLO "https://github.com/SChernykh/p2pool/releases/download/$ver/p2pool-$ver-linux-x64.tar.gz"
+tar xvf p2pool*
 ```
 
 Create a directory for `p2pool` in `/opt/` and place the binary in there:
 ```sh
 mkdir -p /opt/p2pool
-cp p2pool /opt/p2pool
+mv p2pool*/p2pool /opt/p2pool
 cd /opt/p2pool
 ```
 
+
 ## Configuration
+
+Begin by creating a `p2pool` user and giving it permissions over the directory:
+
+```sh
+useradd p2pool -d /opt/p2pool
+chown -R p2pool:p2pool /opt/p2pool
+```
+
+As the `p2pool` user, begin syncronizing the p2pool side-chain:
+
+```sh
+su -c "/opt/p2pool/p2pool --host 127.0.0.1 --wallet {{<hl>}}your_monero_wallet_address{{</hl>}}" p2pool
+```
+
+> Please note: The Monero address in the node is what all payments will be made out to. Specifying different addresses in mining software like XMRig will not affect this.
+
+> Initial syncronization may take a little under half an hour.
+
+Now create a systemd service for p2pool in `/etc/systemd/system/p2pool.service`:
+
+```systemd
+[Unit]
+Description=P2Pool Daemon
+After=syslog.target
+After=network.target
+
+[Service]
+RestartSec=2s
+Type=simple
+User=p2pool
+Group=p2pool
+WorkingDirectory=/opt/p2pool
+ExecStart=/opt/p2pool/p2pool --loglevel 0 --host 127.0.0.1 --wallet {{<hl>}}your_monero_wallet_address{{</hl>}}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+To start the service, run the following:
+```sh
+systemctl enable --now p2pool
+```
+
+## Mining
+
+To mine, begin by installing [XMRig](https://xmrig.com/) to your computer.
+
+```sh
+./xmrig -o {{<hl>}}your_server_ip{{</hl>}}:3333
+```
+
+## Monitoring the Node
+
+Make sure your node is publically reachable by putting your p2pool node's IP address into [2p2pool observer:](https://p2pool.observer/)
+
+![The P2Pool observer page.](01-check.png)
+
+Congratulations! You've successfully set up a P2Pool node.
