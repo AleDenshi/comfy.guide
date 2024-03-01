@@ -1,7 +1,7 @@
 <footer>
 	<hr/>
-	
-	<p><i>Seen an error, or want to contribute?</i> 
+
+	<p><i>Seen an error, or want to contribute?</i>
 	<a href="{{ .Site.Params.git }}/blob/master/content/{{ .Page.File }}">Edit this source.</a></p>
 
 	{{ $params := .Params }}
@@ -9,7 +9,7 @@
 	{{ $site := .Site }}
 	<!-- Grab the parameters from the author's file -->
 	{{ $fileparams := index $site.Data (string $author | lower) }}
-	
+
 	<!-- So long as the "author variable exists, print out any info -->
 	{{ if $author }}
 		<p>This page was made by
@@ -29,40 +29,40 @@
 		</p>
 
 		{{ if $params.tor }}
-			<a href="{{ $params.tor }}"><img src="/icons/tor.svg"/></a>
+			<a href="{{ $params.tor }}"><img src="/icons/tor.svg" alt="tor"/></a>
 		{{ else if $fileparams.tor }}
-			<a href="{{ $fileparams.tor }}"><img src="/icons/tor.svg"/></a>
+			<a href="{{ $fileparams.tor }}"><img src="/icons/tor.svg" alt="tor"/></a>
 		{{ end }}
 
 		{{ if $params.i2p }}
-			<a href="{{ $params.i2p }}"><img src="/icons/i2p.svg"/></a>
+			<a href="{{ $params.i2p }}"><img src="/icons/i2p.svg" alt="i2p"/></a>
 		{{ else if $fileparams.i2p }}
-			<a href="{{ $fileparams.i2p }}"><img src="/icons/i2p.svg"/></a>
+			<a href="{{ $fileparams.i2p }}"><img src="/icons/i2p.svg" alt="i2p"/></a>
 		{{ end }}
 
 		{{ if $params.email }}
-			<a href="mailto:{{ $params.email }}"><img src="/icons/email.svg"/></a>
+			<a href="mailto:{{ $params.email }}"><img src="/icons/email.svg" alt="email"/></a>
 		{{ else if $fileparams.email }}
-			<a href="mailto:{{ $fileparams.email }}"><img src="/icons/email.svg"/></a>
+			<a href="mailto:{{ $fileparams.email }}"><img src="/icons/email.svg" alt="email"/></a>
 		{{ end }}
-	
+
 		{{ if $params.xmpp }}
-			<a href="xmpp:{{ $params.xmpp }}"><img src="/icons/xmpp.svg"/></a>
+			<a href="xmpp:{{ $params.xmpp }}"><img src="/icons/xmpp.svg" alt="xmpp"/></a>
 		{{ else if $fileparams.xmpp }}
-			<a href="xmpp:{{ $fileparams.xmpp }}"><img src="/icons/xmpp.svg"/></a>
+			<a href="xmpp:{{ $fileparams.xmpp }}"><img src="/icons/xmpp.svg" alt="xmpp"/></a>
 		{{ end }}
-	
+
 		{{ if $params.matrix }}
-			<a href="https://matrix.to/#/{{ $params.matrix }}"><img src="/icons/matrix.svg"/></a>
+			<a href="https://matrix.to/#/{{ $params.matrix }}"><img src="/icons/matrix.svg" alt="matrix"/></a>
 		{{ else if $fileparams.matrix }}
-			<a href="https://matrix.to/#/{{ $fileparams.matrix }}"><img src="/icons/matrix.svg"/></a>
+			<a href="https://matrix.to/#/{{ $fileparams.matrix }}"><img src="/icons/matrix.svg" alt="matrix"/></a>
 		{{ end }}
-		
+
 		{{ if $params.monero }}
-			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>	
+			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>
 			<code>{{ $params.monero }}</code>
 		{{ else if $fileparams.monero }}
-			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>	
+			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>
 			<code>{{ $fileparams.monero }}</code>
 	{{ end }}
 
