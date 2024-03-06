@@ -7,8 +7,7 @@ date: 2024-01-15T08:49:36-05:00
 ports: [9015, 9020]
 
 ## Author Information
-author: denshi
-draft: true
+author: Denshi
 ---
 
 Tor, also known as "The Onion Router", is the most popular "anonymizing network" or "darknet". It works by relaying your internet traffic through various servers (ran by volunteers) and encrypting the traffic with new keys for every "hop", thus creating various layers of encryption just like an onion.
@@ -238,7 +237,7 @@ myKindBridge LCJCJDTPPLPPWMCNNKLEMSGETQLSCMDWSYGTKLFL
 
 The final bridge string will look like this:
 ```sh
-Bridge obfs4 121.32.16.102:9010 LCJCJDTPPLPPWMCNNKLEMSGETQLSCMDWSYGTKLFL cert=OeGVmoMzOvI5QyYNyotNZUvWkEirSfMoL0U51BxpgyZwpnpfFYhpovYnTmaWh3oq7c/m2o iat-mode=0
+Bridge obfs4 121.32.16.102:9020 LCJCJDTPPLPPWMCNNKLEMSGETQLSCMDWSYGTKLFL cert=OeGVmoMzOvI5QyYNyotNZUvWkEirSfMoL0U51BxpgyZwpnpfFYhpovYnTmaWh3oq7c/m2o iat-mode=0
 ```
 
 You may now utilize this in Tor browser. Begin by going to Settings --> Connection, scrolling down to bridges and selecting "Add a Bridge Manually":

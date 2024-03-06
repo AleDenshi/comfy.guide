@@ -9,7 +9,7 @@
 	:root {
 		--bg:	#1e1e1e;
 		--fg:	#bdbdbd;
-		--hl:	#656266;
+		--hl:	#413f42;
 		--ch:	#48B8D0;
 	}
 }
@@ -18,7 +18,7 @@ body {
 	background-color: var(--bg);
 	color: var(--fg);
 	width: 90%;
-	max-width: 60em;
+	max-width: 80em;
 	margin: auto;
 	font-family: monospace;
 	font-size: 1.3em;
@@ -58,6 +58,18 @@ pre {
 	border: solid 2px var(--hl);
 	line-break: anywhere;
 	white-space: pre-wrap !important;
+}
+
+code {
+	background: var(--hl);
+}
+
+kbd {
+	background-color: var(--hl);
+	border-radius: 0.1em;
+	border: 1px solid var(--fg);
+	padding: 0.1em 0.2em;
+	box-shadow: 1px 1px 0 black;
 }
 
 footer img {

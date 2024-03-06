@@ -60,10 +60,10 @@
 		
 		{{ if $params.monero }}
 			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>	
-			<code>{{ $params.monero }}</code>
+			<pre>{{ $params.monero }}</pre>
 		{{ else if $fileparams.monero }}
 			<p>Donate to the creator with <a href="https://getmonero.org">Monero</a>:</p>	
-			<code>{{ $fileparams.monero }}</code>
+			<pre>{{ $fileparams.monero }}</pre>
 	{{ end }}
 
 

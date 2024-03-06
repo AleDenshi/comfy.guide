@@ -3,4 +3,10 @@ languageCode = 'en-us'
 title = 'Comfy Guides'
 
 [params]
-	git = 'https://github.com/AleDenshi/comfy.guide'
+git = 'https://github.com/AleDenshi/comfy.guide'
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
