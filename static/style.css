@@ -64,6 +64,10 @@ code {
 	background: var(--hl);
 }
 
+pre code {
+	background: none;
+}
+
 kbd {
 	background-color: var(--hl);
 	border-radius: 0.1em;

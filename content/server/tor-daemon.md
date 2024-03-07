@@ -12,7 +12,7 @@ author: Denshi
 
 Tor, also known as "The Onion Router", is the most popular "anonymizing network" or "darknet". It works by relaying your internet traffic through various servers (ran by volunteers) and encrypting the traffic with new keys for every "hop", thus creating various layers of encryption just like an onion.
 
-This tutorial will cover 4 ways of running Tor on the server. (Note: all of these may be run simultaneously if you wish!)
+This tutorial will cover 4 ways of running Tor on the server: (Note: all of these may be run simultaneously if you wish!)
 
 1. Running a "Hidden Service", a website accessible through the Tor network that anonymizes both the server and the client.
 
