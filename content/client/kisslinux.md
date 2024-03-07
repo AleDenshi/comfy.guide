@@ -27,6 +27,8 @@ KISS is maintained in two different forms: Regular KISS Linux and GKISS Linux. I
 
 Before installing the system, run `cfdisk` to properly partition the space you wish to use for KISS. This guide will assume you're installing to `{{<hl>}}/dev/sda1{{</hl>}}`.
 
+> If running with BIOS/DOS, ensure your root partition is bootable!
+
 Format your root partition to the EXT4 filesystem:
 
 ```sh
@@ -76,7 +78,7 @@ The `genfstab` script may be used to generate an `/etc/fstab` file for the KISS 
 git clone https://github.com/glacion/genfstab
 cd genfstab
 
-./genfstab > /mnt/etc/fstab
+./genfstab /mnt > /mnt/etc/fstab
 
 ```
 
@@ -164,6 +166,7 @@ Some packages to consider:
 
 - `libelf` -- To build the Linux kernel.
 - `perl` -- (Optionally) to build the Linux kernel.
+- `ncurses` -- For the kernel `menuconfig` TUI.
 - `baseinit` -- The init system for KISS.
 - `grub` -- The recommended bootloader.
 - `efibootmgr` -- To boot on UEFI systems.
@@ -176,9 +179,9 @@ Some packages to consider:
 To install any of the following commands, run `kiss b` and then `kiss i`:
 
 ```sh
-kiss b libelf perl baseinit grub e2fsprogs dhcpcd
+kiss b libelf ncurses perl baseinit grub e2fsprogs dhcpcd
 
-kiss i libelf perl baseinit grub e2fsprogs dhcpcd
+kiss i libelf ncurses perl baseinit grub e2fsprogs dhcpcd
 ```
 
 ## Kernel Configuration
@@ -221,13 +224,14 @@ make install
 You may also install the kernel modules.
 
 ```
-make INSTALL_MOD_STRIP= 1 modules_install -j$(nproc)
+make INSTALL_MOD_STRIP= 1 modules_install
 ```
 
-Finally, be sure to give your kernel an appropriate name for the bootloader (`grub`) to identify:
+Finally, be sure to give your kernel and System.map an appropriate name for the bootloader (`grub`) to identify:
 
 ```sh
-mv /boot/vmlinuz-linux /boot/vmlinuz-linux-{{<hl>}}6.7.9{{</hl>}}
+mv /boot/vmlinuz /boot/vmlinuz-{{<hl>}}6.7.9{{</hl>}}
+mv /boot/System.map /boot/System.map-{{<hl>}}6.7.9{{</hl>}}
 ```
 
 ## Users and passwords
