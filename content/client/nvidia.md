@@ -11,7 +11,7 @@ author: Denshi
 
 NVIDIA GPUs are **notoriously hard** to setup on Linux. This comprehensive guide aims to make this relatively difficult process streamlined and easy, to maximize either performance or battery life.
 
-> This guide is aimed **specifically** at Arch Linux systems. The steps described here may not work on other distributions, but still remain indicative of the general setup requried to get NVIDIA working.
+> This guide is aimed **specifically** at Arch Linux systems. The steps described here may not work on other distributions, but still remain indicative of the general setup required to get NVIDIA working.
 
 ## NVIDIA Optimus (Laptops)
 Optimus refers to the underlying system in laptops that allows them to manage both an Intel iGPU and an NVIDIA (dedicated) GPU. There are various ways of managing Optimus, and this section of the guide will run through various options.

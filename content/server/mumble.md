@@ -87,7 +87,7 @@ Once you've setup your Mumble server, you can use it by connecting to its IP add
 
 ![The interface for setting up the certificate.](1-cert.png)
 
-> **Important Note:** When starting Mumble for the first time, you will be asked to create a *certificate.* Do not lose this certificate, as this is practically your Mumble "identity". If you register a custom user as an admin on your server, you'll need the corresponding certificate to gain the administative privileges. Once again, **don't lose it!**
+> **Important Note:** When starting Mumble for the first time, you will be asked to create a *certificate.* Do not lose this certificate, as this is practically your Mumble "identity". If you register a custom user as an admin on your server, you'll need the corresponding certificate to gain the administrative privileges. Once again, **don't lose it!**
 
 
 ### Registering as an Admin

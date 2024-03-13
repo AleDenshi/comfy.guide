@@ -16,7 +16,7 @@ author: Denshi
 
 By default, Monero mining on your own is extremely unlikely to yield results unless you have a significant amount of computing power. By using a mining pool, you can organize with other users and mine together, splitting the rewards. However, this comes with a myriad of restrictions depending on the pool owner, such as *fees, high minimum payouts* and the risk of *centralized 51% attacks* on the wider Monero network.
 
-P2Pool solves this by offerring a decentralized network to distribute mining rewards based on contribution. It's a mining pool you connect to with the *p2pool software,* and touts various advantages such as: **0% fees, a minimum payout of ~0.00027 XMR,** and most importantly **pure decentralized mining.**
+P2Pool solves this by offering a decentralized network to distribute mining rewards based on contribution. It's a mining pool you connect to with the *p2pool software,* and touts various advantages such as: **0% fees, a minimum payout of ~0.00027 XMR,** and most importantly **pure decentralized mining.**
 
 ## Configuring `monerod`
 
@@ -67,7 +67,7 @@ useradd p2pool -d /opt/p2pool
 chown -R p2pool:p2pool /opt/p2pool
 ```
 
-As the `p2pool` user, begin syncronizing the p2pool side-chain:
+As the `p2pool` user, begin synchronizing the p2pool side-chain:
 
 ```sh
 su -c "/opt/p2pool/p2pool --host 127.0.0.1 --wallet {{<hl>}}your_monero_wallet_address{{</hl>}}" p2pool
@@ -113,7 +113,7 @@ To mine, begin by installing [XMRig](https://xmrig.com/) to your computer.
 
 ## Monitoring the Node
 
-Make sure your node is publically reachable by putting your p2pool node's IP address into [2p2pool observer:](https://p2pool.observer/)
+Make sure your node is publicly reachable by putting your p2pool node's IP address into [2p2pool observer:](https://p2pool.observer/)
 
 ![The P2Pool observer page.](01-check.png)
 

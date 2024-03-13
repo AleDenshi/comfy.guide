@@ -10,7 +10,7 @@ ports: [80, 443]
 author: Denshi
 ---
 
-PeerTube is a self-hosted and (optionally) federated video sharing platform that saves bandwith on videos the more people watch. PeerTube instances can follow each other to share videos and grow the federated network, but you can always keep your instance to yourself if you choose to.
+PeerTube is a self-hosted and (optionally) federated video sharing platform that saves bandwidth on videos the more people watch. PeerTube instances can follow each other to share videos and grow the federated network, but you can always keep your instance to yourself if you choose to.
 
 ## Note on Bandwidth
 
