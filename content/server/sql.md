@@ -9,7 +9,7 @@ icon: psql.svg
 author: Denshi
 ---
 
-SQL is a standardized language for database management. This article is a "cheat sheet" of sorts, helping you with the sematics of database engines such as MySQL and PostgreSQL.
+SQL is a standardized language for database management. This article is a "cheat sheet" of sorts, helping you with the semantics of database engines such as MySQL and PostgreSQL.
 
 ## Note on Encoding
 
@@ -31,7 +31,7 @@ To enter the MySQL prompt, run `mysql`.
 CREATE USER '{{<hl>}}username{{</hl>}}'@'localhost' IDENTIFIED BY '{{<hl>}}password{{</hl>}}';
 ```
 
-### Creating a databse
+### Creating a database
 
 ```sql
 CREATE DATABASE {{<hl>}}database_name{{</hl>}};

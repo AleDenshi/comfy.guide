@@ -20,7 +20,7 @@ for example, with Dnsmasq, you can employ the usage of **wildcard domains** to b
 
 ## Before we begin...
 while Dnsmasq is very versatile software that can be used for a variety of networking and DNS applications,
-this guide assumes you only want to setup Dnsmasq to **block domains from resolving** (ie. ads and social media sites).
+this guide assumes you only want to setup Dnsmasq to **block domains from resolving** (i.e. ads and social media sites).
 It is possible to get **custom domain resolution** and **internal network services** running using Dnsmasq,
 but this is beyond the scope of this article.
 

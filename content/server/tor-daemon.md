@@ -254,7 +254,7 @@ Finally, the bridge will show up in your list of bridges, including a handy QR c
 
 ## Exit Node
 
-> As mentioned at the beginning of this article, **running an exit node can be dangerous.** Take all the ncessary precautions to inform your ISP about this before enabling this option. Do this at your own risk.
+> As mentioned at the beginning of this article, **running an exit node can be dangerous.** Take all the necessary precautions to inform your ISP about this before enabling this option. Do this at your own risk.
 
 To set up an exit node, simply set up a [Middle/Guard Node](#middle) and set the `ExitRelay` option to `1`:
 
