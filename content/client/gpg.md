@@ -4,7 +4,7 @@ author: Denshi
 description: Encrypt, decrypt, sign and verify messages and files.
 icon: gpg.svg
 
-draft: true
+draft: false
 
 date: 2023-01-01
 email: alex@denshi.org
@@ -34,7 +34,7 @@ Now follow the prompts, and enter any relevant identity information you want to 
 
 Every PGP public key supports **identities.** This means you can give a key a name and an associated email in [supported clients.](https://www.openpgp.org/software/) Not only can you send encrypted messages with PGP, but you can also **verify a user's identity** through the use of **fingerprints.**
 
-To edit any of the parameters of your key, run the following command with your key's signature:
+To edit any of the parameters of your key, run the following command with your key's fingerprint:
 
 ```sh
 gpg --edit-key {{<hl>}}FCA165AAA90719CE3A9CEF3E3264540BB6A15BAA{{</hl>}}
@@ -48,7 +48,7 @@ This will make you enter the GnuPG shell. Run the `uid` command to list existing
 
 Run the `adduid` command to add identities to the key, and the `deluid` command to delete old ones.
 
-> Please note: Signatures made for older IDs will not be valid for the new oens.
+> Please note: Signatures made for older IDs will not be valid for the new ones.
 
 ## File Signature and Verification
 
