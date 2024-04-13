@@ -18,7 +18,7 @@ This guide runs you through the initial setup process for Vichan. This is a very
 Begin by installing the packages required for Vichan to function properly:
 
 ```sh
-apt install php-bcmath php-gd php-pdo php-mbstring php-mysql php-redis mariadb-server composer imagemagick graphicsmagick gifsicle
+apt install php-{fpm,bcmath,gd,pdo,mbstring,mysql,redis} composer mariadb-server imagemagick graphicsmagick gifsicle
 ```
 
 ### Installing Vichan with Composer
@@ -112,8 +112,10 @@ The recommended way of setting up Vichan is through the **integrated web install
 
 Firstly, ensure that the PHP FastCGI Process Manager is started:
 
+> **Please note:** The `8.2` number is your php version. The systemd daemon will always be named after the current version of `php-fpm` installed, so make sure to run this command with the appropriate version number for your php!
+
 ```sh
-systemctl start php-fpm
+systemctl restart php8.2-fpm
 ```
 
 Then, simply navigate to `https://{{<hl>}}chan.example.org{{</hl>}}/install.php` and click **Proceed to installation**:
