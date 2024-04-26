@@ -48,7 +48,7 @@ admins = { "admin1@example.org", "admin2@example.org" }
 
 Note that we have not created these accounts yet, we will do this [below](#user).
 
-### Set the Server URL
+### Setting the VirtualHost
 
 Find the line `VirtualHost "localhost"` and replace `localhost` with your domain. In our case, we will have `VirtualHost "example.org"`
 
@@ -151,7 +151,7 @@ allow_registration = true
 Prosody allows you to set and publish a list of contacts for any abuse or admin complaints your server may get. **This is not essential for a functioning server,** but you may want to set this if you plan on running a public server.
 
 ```lua
-contact info = {
+contact_info = {
     -- You can specify email addresses as well as XMPP addresses.
     abuse = { "xmpp:admin@example.org", "mailto:admin@example.org" };
     admin = { "xmpp:admin@example.org", "mailto:admin@example.org" };
@@ -378,7 +378,6 @@ Component "{{<hl>}}chat.example.org{{</hl>}}" "muc"
 ...
 ```
 
-
 ### Pubsub RSS Feed Mirroring
 
 If you've setup a [Pubsub component](#pubsub), you can enable a community module to automatically grab RSS feeds and publish their contents to a Pubsub node of your choosing. Simply install the community module:
@@ -407,7 +406,6 @@ feeds = {
 -- (default is 900 seconds, 15 minutes)
 feed_pull_interval_seconds = 900
 ```
-
 
 #### Granting Ownership on Module-Created Pubsub Nodes
 
@@ -445,4 +443,3 @@ systemctl restart prosody
 ## Using your Server
 
 Once your server is set up, you just need an **XMPP client** to use your new and secure chat system.
-See the [XMPP client list](/client/xmpp) for a comprehensive list of clients and their features.
