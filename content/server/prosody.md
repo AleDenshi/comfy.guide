@@ -265,7 +265,7 @@ prosodyctl --root cert import /etc/letsencrypt/live/
 
 Note that you might get an error that a certificate has not been found if your `muc` subdomain and your main domain share a certificate. It should still work, this is just notifying you that no specific certificate for the subdomain.
 
-**Note:** The above command will need to be rerun when certificates are renewed. You may want to create a [cronjob](/server/cron) to have this done automatically.
+**Note:** The above command will need to be rerun when certificates are renewed. You may want to create a cronjob to have this done automatically.
 
 ## Included Modules
 
