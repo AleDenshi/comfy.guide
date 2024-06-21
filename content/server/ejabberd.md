@@ -10,7 +10,7 @@ ports: [5000, 5222, 5269, 5280, 5281]
 author: Denshi
 ---
 
-[Ejabberd](https://ejabberd.im) is a server for the XMPP protocol written in Erlang. It's more scalable, and easier to setup than [Prosody](/prosody) due to having most of its modules built-in and pre-configured by default.
+[Ejabberd](https://ejabberd.im) is a server for the XMPP protocol written in Erlang. It's more scalable, and easier to setup than [Prosody](/server/prosody) due to having most of its modules built-in and pre-configured by default.
 
 
 ## Subdomains
@@ -113,7 +113,7 @@ for i in "${subdomains[@]}"; do
     cp /etc/letsencrypt/live/$i$DOMAIN/privkey.pem /opt/ejabberd/certs/$i$DOMAIN/
 done
 ```
-*Note: Just like with Prosody, you might want to write this script to a file and setup a [cronjob](/server/cron) to run it periodically. This should help prevent your certificates from expiring.*
+*Note: Just like with Prosody, you might want to write this script to a file and setup a cronjob to run it periodically. This should help prevent your certificates from expiring.*
 
 Make sure all the certificates are readable by the `ejabberd` user:
 ```sh
@@ -250,7 +250,7 @@ Ejabberd supports the **TURN** and **STUN** protocols to allow internet users be
 
 #### Setup with Coturn and `mod_stun_disco`
 
-Firstly, setup a TURN and STUN server with [Coturn,](/coturn) using an **authentication secret.**
+Firstly, setup a TURN and STUN server with [Coturn,](/server/coturn) using an **authentication secret.**
 
 Then, edit `mod_stun_disco` to contain the appropriate information for
 your turnserver:
