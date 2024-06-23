@@ -126,6 +126,11 @@ Ensure the files are accessible by the `blocky` user:
 chown -R blocky:blocky /opt/blocky
 ```
 
+> To use Blocky as a traditional DNS server in addition to its encrypted functionality, **make sure to run the following command** giving its binary permissions to access port 53:
+
+```sh
+setcap CAP_NET_BIND_SERVICE=+eip /opt/blocky/blocky
+```
 
 Finally, add your certbot certificates to the `/opt/blocky/config.yaml` file as follows:
 
