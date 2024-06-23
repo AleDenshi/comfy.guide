@@ -10,7 +10,7 @@ ports: [53, 443, 843]
 author: Denshi
 ---
 
-[Blocky](https://0xerr0r.github.io/blocky/latest/) is a libre DNS server that, in addition to the standard DNS protocol, supports DNS-over-HTTPS and DNS-over-TLS. It also supports syncronizing adblocking DNS lists in addition to your static `/etc/hosts` file. 
+[Blocky](https://0xerr0r.github.io/blocky/latest/) is a libre DNS server that, in addition to the standard DNS protocol, supports DNS-over-HTTPS and DNS-over-TLS. It also supports auto-updating ad blocking DNS lists in addition to your static `/etc/hosts` file. 
 
 > DNS-over-TLS is the technology required by Android 9+ to set a **universal** DNS server. With this consideration, Blocky becomes an invaluable tool for blocking ads and [unwanted content](https://denshi.org/antiporn) on any smartphone, especially without root access.
 
@@ -185,6 +185,35 @@ systemctl restart blocky
 
 Congratulations! You've setup a Blocky DNS server!
 
+## Connecting to Blocky on Chrome
+
+All Chromium-based browsers have the option to connect to a DNS-over-HTTPS server.
+To enable this, begin by going to [chrome://settings/security](chrome://settings/security), where you will see a "Use secure DNS" option:
+
+![The Google Chrome security settings page.](g1-security.png)
+
+Click on the scroll down menu and select "Add a custom DNS service provider", and insert your DNS server's DNS-over-HTTPS domain in the prompt. This should be `{{<hl>}}https://dns.example.org/dns-query{{</hl>}}`:
+
+![A custom dns in the Google Chrome DNS prompt.](g2-inserting.png)
+
 ## Connecting to Blocky on Android
 
-To connect to your Blocky DNS on your Android 9+ phone, begin by opening the settings app and going to 
+To connect to your Blocky DNS on your Android 9+ phone, begin by opening the settings app and going to the Network & Internet section:
+
+![The settings app, with the "Network & Internet" section highlighted.](1-settings.png)
+
+Then tap on "Private DNS":
+
+![The Network & Internet section with "Private DNS" highlighted.](2-privatedns.png)
+
+In the popup window, type the domain of your DNS server:
+
+![A popup window with "dns.denshi.org" typed into the server option.](3-inserting.png)
+
+If the Private DNS option simply displays your domain name with no errors, you've successfully set up the DNS server!
+
+![Secure DNS server setup with no errors.](4-done.png)
+
+If it instead says "Couldn't Connect", please double-check your configuration and the systemd service to make sure Blocky can access the TLS certificates.
+
+![A couldn't connect error.](5-error.png)
