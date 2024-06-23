@@ -1,8 +1,11 @@
-author:   "Denshi"
-website:  "https://denshi.org"
-email:    "alex@denshi.org"
-xmpp:     "alex@denshi.org"
-matrix:   "@alex:denshi.org"
-monero:   "48dnPpGgo8WernVJp5VhvhaX3u9e46NujdYA44u8zuMdETNC5jXiA9S7JoYMM6qRt1ZcKpt1J3RZ3JPuMyXetmbHH7Mnc9C"
-tor: "http://denshibjj744ww6lu7n4rjz3ufn7232hhbyrl3wyit2rz77f24p3gbid.onion"
-i2p: "http://denshiky5uqsfq7ra2djupn4i2l7jep27pfedpzoxiaujsuql4za.b32.i2p"
+author: "Denshi"
+
+links:
+  website: "https://denshi.org"
+  tor: "http://denshibjj744ww6lu7n4rjz3ufn7232hhbyrl3wyit2rz77f24p3gbid.onion"
+  i2p: "http://denshiky5uqsfq7ra2djupn4i2l7jep27pfedpzoxiaujsuql4za.b32.i2p"
+  xmpp: "xmpp:alex@denshi.org"
+  email: "mailto:alex@denshi.org"
+
+crypto:
+  xmr: "48dnPpGgo8WernVJp5VhvhaX3u9e46NujdYA44u8zuMdETNC5jXiA9S7JoYMM6qRt1ZcKpt1J3RZ3JPuMyXetmbHH7Mnc9C"
