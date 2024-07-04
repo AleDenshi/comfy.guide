@@ -4,26 +4,30 @@
 	<p><i>See an error, or want to contribute?</i> 
 	<a href="{{ .Site.Params.git }}/blob/master/content/{{ .Page.File }}">Edit this source.</a></p>
 
-	{{ $params := .Params }}
-	{{ $author := .Params.author }}
-	{{ $site := .Site }}
-	<!-- Grab the parameters from the author's file -->
-	{{ $fileparams := index $site.Data (string $author | lower) }}
+	{{- $params := .Params -}}
+	{{- $author := .Params.author -}}
+	{{- $site := .Site -}}
+
+	{{- if $author -}}
+		<!-- Grab the parameters from the author's file -->
+		{{- $fileparams := index $site.Data (string $author | lower) -}}
+		<!-- Only use file parameters if the file exists -->
+		{{- with $fileparams -}}
+			{{- $params = $fileparams -}}
+		{{- end -}}
+		<!-- So long as the "author" variable exists, print out any info -->
 	
-	<!-- So long as the "author" variable exists, print out any info -->
-	{{ if $author }}
 		<p>
 		This page was made by: <b>{{ $author }}</b>
 		</p>
-	
-		{{ range $key, $value := $fileparams.links }}
-			{{ if eq $key "monero" }} {{ continue }} {{ end }}
-		<a href="{{ $value }}"><img title="[{{ $key }}]" src="/icons/{{ $key }}.svg"/></a>
-		{{ end }}
 		
-		{{ with $fileparams.crypto }}
+		{{- range $key, $value := $params.links }}
+		<a href="{{ $value }}"><img title="[{{ $key }}]" src="/icons/{{ $key }}.svg"/></a>
+		{{- end -}}
+		
+		{{- with $params.crypto }}
 		<p>Donate to the author:</p>
-			{{ range $key, $value := . }}
+			{{- range $key, $value := . }}
 		<div style="overflow: hidden; white-space: nowrap; font-family: monospace; font-size: 0.9em; padding: 0.2em 0.2em; border: 1px solid var(--fg); display: inline-block; max-width: 100%;">
 			<img style="float: left; margin: 0em 0.3em;" src="/icons/{{ $key }}.svg">
 			{{ $value }}
