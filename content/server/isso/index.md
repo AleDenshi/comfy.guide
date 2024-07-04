@@ -1,15 +1,16 @@
 ---
 ## Guide Information
 title: "Isso"
-description: A commenting server similar to disqus
+description: A commenting server for your self-hosted blog
 icon: isso.svg
 date: 2024-03-17
 ports: [80, 443]
 
 ## Author Information
-author: Ángel Castañeda
-email: angel@acsq.me
-matrix: "@acsquared:cyberia.club"
+author: "Ángel Castañeda"
+links:
+  email: "angel@acsq.me"
+  matrix: "@acsquared:cyberia.club"
 
 ---
 
@@ -17,7 +18,7 @@ Isso is a free and open source commenting server for people that want simple, se
 
 ## Prerequisites
 
-This guide assumes you already have a static webserver up and running with [nginx](/server/nginx) or caddy with a website roughly in this shape:
+This guide assumes you already have a static webserver up and running with [nginx](/server/nginx) website roughly in this shape:
 
 ```
 /var/www/example.org/
@@ -41,7 +42,6 @@ Isso is not included in Debian 12's repositories, so we're gonna need to set up 
 Install dependencies first:
 
 ```sh
-# this guide assumes you are root unless otherwise stated
 apt-get install python3-setuptools python3-virtualenv python3-dev
 ```
 
@@ -100,31 +100,7 @@ Now we need to run our commenting server.
 
 First, let's set up our reverse proxy to it.
 
-#### Caddy
-
-If you're running caddy, just edit your /etc/caddy/Caddyfile with the new isso.example.org entry:
-
-```caddyfile
-example.org {
-    root * /var/www/example.org
-    encode gzip
-    file_server
-}
-
-isso.example.org {
-    reverse_proxy localhost:8080
-}
-```
-
-And reload:
-
-```sh
-systemctl reload caddy
-```
-
-#### NGINX
-
-With nginx, make a new config file at /etc/nginx/sites-available/isso.example.org:
+Make a new config file at /etc/nginx/sites-available/isso.example.org:
 
 ```nginx
 server {
@@ -152,7 +128,7 @@ certbot --nginx -d isso.example.org --register-unsafely-without-email
 systemctl reload nginx
 ```
 
-done!
+Done!
 
 ### Website
 
@@ -206,7 +182,7 @@ rm /var/lib/isso/comments.db
 exit # back to root
 ```
 
-We will make a daemon to automate isso for us. Write this to /etc/systemd/system/isso.service:
+We will make a daemon to automate isso for us. Add this to `/etc/systemd/system/isso.service`:
 
 ```systemd
 [Unit]
