@@ -1,7 +1,7 @@
 ---
 ## Software Information
 title: Monero Node
-date: 2024-07-02
+date: 2024-07-04
 description: Contribute to the Monero network by hosting a copy of the blockchain.
 icon: xmr.svg
 ports: [18081, 18083]
