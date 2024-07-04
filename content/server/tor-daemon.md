@@ -89,7 +89,7 @@ Run the following to configure and build:
 ./autogen.sh
 ./configure
 
-make install -j$(nproc)
+make -j$(nproc)
 ```
 
 Finally, run the program with a desired string filter:
