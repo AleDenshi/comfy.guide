@@ -13,23 +13,23 @@ matrix: "@acsquared:cyberia.club"
 
 ---
 
-Soju is an irc bouncer that turns the protocol into something modern everyone can use with chat history, persistent connections, and multiserver support.
+Soju is an IRC bouncer that turns the protocol into something modern everyone can use with chat history, persistent connections, and multi-server support.
 
 This guide assumes you have a subdomain at `irc.example.org` and are port forwarding at 6697.
 
 ## Installation
 
-Soju is not in debian 12's repos, so we'll need to build it from source.
+Soju is not in Debian 12's repos, so we'll need to build it from source.
 
 ```sh
 VERSION=v0.8.0
-curl -fLO https://git.sr.ht/~emersion/soju/archive/$VERSION.tar.gz
+curl -fLO https://codeberg.org/emersion/soju/archive/$VERSION.tar.gz
 tar xvf $VERSION.tar.gz
 rm $VERSION.tar.gz
 mv soju-$VERSION soju
 ```
 
-Soju's latest release depends on go 1.19 which happens to be the exact same version in debian's repos. Let's install some more depencencies to build our binaries:
+Soju's latest release depends on Go 1.19 which happens to be the exact same version in Debian's repos. Let's install some more dependencies to build our binaries:
 
 ```sh
 apt install golang scdoc libsqlite3-dev
@@ -42,15 +42,16 @@ make install
 
 ### Unix User
 
-From the docs: "soju is designed to be run as a system-wide service under a separate user account."
+From the docs:
+> soju is designed to be run as a system-wide service under a separate user account.
 
-So let's make that separate user.
+Let's make that user:
 
 ```sh
-useradd -m -d /var/lib/soju -s /usr/bin/bash soju
+useradd -m -d /var/lib/soju soju
 ```
 
-### Getting Certs
+### SSL certificates
 
 ```sh
 apt install certbot
@@ -60,7 +61,7 @@ chmod 0640 /etc/letsencrypt/live/{{<hl>}}irc.example.org{{</hl>}}/privkey.pem
 chgrp soju /etc/letsencrypt/live/{{<hl>}}irc.example.org{{</hl>}}/privkey.pem
 ```
 
-Now let's automate soju's restart each time we pull a new cert:
+Now let's automate soju restarting each time we pull a new certificate:
 
 Write out this script to /etc/letsencrypt/renewal-hooks/post/soju.sh:
 
@@ -100,9 +101,9 @@ Make an admin user called anon:
 sojudb create-user anon -admin
 ```
 
-### Systemd Service
+### systemd service
 
-Then let's make a service in /etc/systemd/system/soju.service
+Now let's make a systemd service that will start soju automatically for us. Write this to /etc/systemd/system/soju.service:
 
 ```systemd
 [Unit]
@@ -129,7 +130,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-Then enable our new service
+Then enable our new service to start on boot, and start it:
 
 ```sh
 systemctl daemon-reload
@@ -140,9 +141,9 @@ systemctl enable --now soju
 
 ### Client Configurations
 
-Soju can be used by most legacy irc clients, but ones that support the soju.im/bouncer-networks extension make multiple servers work seamlessly.
+Soju can be used by most regular IRC clients, but clients that support the soju.im/bouncer-networks extension make multiple servers work seamlessly.
 
-Here is a table of recommended clients that support said extension.
+Here is a table of recommended clients that support this extension.
 
 | Client                                                      | Interface    |
 | :---------------------------------------------------------- | :----------  |
@@ -151,7 +152,7 @@ Here is a table of recommended clients that support said extension.
 | [Gamja](https://sr.ht/~emersion/gamja/)                     | Web          |
 | [Chathistorysync](https://sr.ht/~emersion/chathistorysync/) | Plain Text   |
 
-See more client configurations [here](https://git.sr.ht/~emersion/soju/tree/master/item/contrib/clients.md) for legacy clients.
+Configurations for clients not supporting the extension can be found [here](https://codeberg.org/emersion/soju/src/branch/master/contrib/clients.md).
 
 Here is an example client configuration for senpai.
 
@@ -168,7 +169,7 @@ Several of the clients above have special user interfaces to add new servers, bu
 For example, this is how we'd add [libera.chat](https://libera.chat) to our server:
 
 ```
-/msg BouncerServ net create -addr irc.libera.chat -name libera -realname "mr anon"
+/msg BouncerServ network create -addr irc.libera.chat -name libera -realname "mr anon"
 ```
 
 ### New Users
@@ -183,7 +184,7 @@ Note: If you set up the `unix+admin://` listen directive in your config, you can
 
 ## Further Configuration
 
-You should have a usable bouncer by now, but there are more config options worth looking into. Read the documentation from soju's man page or the [contrib](https://git.sr.ht/~emersion/soju/tree/master/item/contrib/) section of the repo.
+You should have a usable bouncer by now, but there are more config options worth looking into. Read the documentation in soju's man page (`man soju`) or take a look at the [contrib](https://codeberg.org/emersion/soju/src/branch/master/contrib/) section of its Git repository.
 
 Of note:
 
