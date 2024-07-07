@@ -1,7 +1,7 @@
 ---
 ## Software Information
 title: P2Pool
-date: 2023-09-16
+date: 2024-07-07
 icon: p2pool.svg
 description: Mine Monero on the decentralized P2Pool network.
 ports: [18081, 37889, 37888, 3333]
