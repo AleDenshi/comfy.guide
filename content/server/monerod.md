@@ -47,7 +47,6 @@ curl -fLO "https://downloads.getmonero.org/cli/$arch"
 
 tar -xvjf monero*
 
-# Move the binaries to /usr/bin/
 mv linux*/monero* /usr/bin/
 ```
 
