@@ -45,8 +45,7 @@ esac
 
 curl -fLO "https://downloads.getmonero.org/cli/$arch"
 
-# Extract the downloaded tarball
-tar -xvjf monerod*
+tar -xvjf monero*
 
 # Move the binaries to /usr/bin/
 mv linux*/monero* /usr/bin/
