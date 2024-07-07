@@ -46,7 +46,20 @@ Begin by downloading and extracting the binary:
 baseurl="https://github.com/SChernykh/p2pool/releases"
 ver=$(basename "$(curl -w "%{url_effective}\n" -I -L -s -S $baseurl/latest -o /dev/null)")
 
-curl -fLO "https://github.com/SChernykh/p2pool/releases/download/$ver/p2pool-$ver-linux-x64.tar.gz"
+arch=$(uname -m)
+case $arch in
+    x86_64)
+        arch="x64"
+        ;;
+    aarch64)
+        arch="aarch64"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+curl -fLO "https://github.com/SChernykh/p2pool/releases/download/$ver/p2pool-$ver-linux-$arch.tar.gz"
 tar xvf p2pool*
 ```
 

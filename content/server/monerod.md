@@ -30,12 +30,27 @@ Some other benefits of a full node are:
 Because of the nature of Monero as an ever-evolving decentralized project, it is advised to download and keep an up-to-date version of it for your node. This can be accomplished by downloading the software manually:
 
 ```sh
-wget https://downloads.getmonero.org/linux64
-tar -xvjf linux64
-mv linux64/monero* /usr/bin/
-```
+arch=$(uname -m)
+case $arch in
+    x86_64)
+        arch="linux64"
+        ;;
+    aarch64)
+        arch="linuxarm8"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
 
-> If the hardware you are using is not based on the amd64 architecture (like a Raspberry Pi), the monero project also [offers binaries](https://www.getmonero.org/downloads/) for other architectures on Linux, to download and install them simply change the last part of the link (linux64) and the archive name, e.g. for arm64 (linuxarm8). The fastest way to find out which one to use in Debian is with the `dpkg --print-architecture` command.
+curl -fLO "https://downloads.getmonero.org/cli/$arch"
+
+# Extract the downloaded tarball
+tar -xvjf monerod*
+
+# Move the binaries to /usr/bin/
+mv linux*/monero* /usr/bin/
+```
 
 ## Configuration
 
