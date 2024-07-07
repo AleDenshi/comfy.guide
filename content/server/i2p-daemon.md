@@ -181,10 +181,10 @@ To register your site with a registrar for a more memorable address, use the `re
     ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/
     ```
 
-5. Reload Nginx to apply the changes:
+5. Restart NGINX to apply the changes:
 
     ```sh
-    systemctl reload nginx
+    systemctl restart nginx
     ```
 
 ### Clarifications
