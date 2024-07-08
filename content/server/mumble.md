@@ -2,7 +2,7 @@
 ## Software Information
 title: Mumble
 date: 2023-10-09
-description: Voice call with friends, even over Tor/I2P.
+description: Voice call with friends.
 icon: mumble.svg
 ports: [64738]
 
