@@ -2,7 +2,7 @@
 {{ .Content }}
 
 <div class="columns">
-{{ range .Site.Sections }}
+{{ range .Site.Sections.ByTitle.Reverse }}
 	<div class="block">
 	<h2>{{ .Title }}</h2>
 	<p>{{ .Content }}</p>
