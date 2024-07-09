@@ -2,12 +2,12 @@
 ## Software Information
 title: Mumble
 date: 2023-10-09
-description: Voice call with friends, even over Tor/I2P.
+description: Voice call with friends.
 icon: mumble.svg
 ports: [64738]
 
 ## Author Information
-author: denshi
+author: Denshi
 ---
 
 [Mumble](https://www.mumble.info/) is a light and high-quality libre voice chat protocol. You can self-host your own Mumble server and control your conversations.
