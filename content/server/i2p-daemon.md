@@ -65,7 +65,7 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
 
 ## Hidden Services
 
-I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p-setup), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example.
+I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example.
 
 ## Configuring I2P
 

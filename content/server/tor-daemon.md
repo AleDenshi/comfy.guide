@@ -48,7 +48,7 @@ apt install tor deb.torproject.org-keyring
 
 ## Hidden Services
 
-Tor can proxy any TCP-based traffic you wish to give it. This includes [webservers](/server/nginx), [Monero nodes](/server/monerod/#tori2p-setup), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example, especially to highlight the special features one can use in NGINX to enhance the Tor experience.
+Tor can proxy any TCP-based traffic you wish to give it. This includes [webservers](/server/nginx), [Monero nodes](/server/monerod/#tor), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example, especially to highlight the special features one can use in NGINX to enhance the Tor experience.
 
 ### Configuring Tor
 
