@@ -89,7 +89,7 @@ Next, configure the i2pd daemon. The configuration files are located in `/etc/i2
 
 2. You can comment out or remove the default tunnels in the configuration file.
 
-> Tunnels provide a more secure method for using clients over I2P compared to utilizing a SOCKS proxy. Software may still leak sensitive information even when configured to use a SOCKS proxy. This is the reason services hosted over I2P that require a SOCKS proxy are uncommon. For more information, please refer to: [SOCKS and SOCKS proxies](https://geti2p.net/en/docs/api/socks).
+> Tunnels provide a more secure method for using clients over I2P compared to utilizing a SOCKS proxy. Software may still leak sensitive information even when configured to use a SOCKS proxy. This is the reason services hosted over I2P that require a SOCKS proxy are uncommon. For more information refer to the [SOCKS and SOCKS proxies](https://geti2p.net/en/docs/api/socks) article.
 
 ### Optional: Generating a Vanity Address
 
