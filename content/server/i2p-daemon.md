@@ -39,7 +39,7 @@ I2P, also known as the "Invisible Internet Project," is a decentralized anonymiz
    - **Tor**: Supports only TCP, which is suitable for web browsing and other TCP-based applications.
    - **I2P**: Supports both TCP and UDP protocols, making it more versatile for different types of applications, including those that require real-time communication or are optimized for UDP.
 
-## Installing I2P
+## Installing I2Pd
 
 To get the latest version of i2pd, you need to [add the i2pd repositories to your system](https://repo.i2pd.xyz/).
 
@@ -73,7 +73,7 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
 
 I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
 
-## Configuring I2P
+## Configuring I2Pd
 
 Next, configure the i2pd daemon. The configuration files are located in `/etc/i2pd/`.
 
