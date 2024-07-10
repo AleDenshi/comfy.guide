@@ -132,7 +132,7 @@ from the Monero documentation:
 
 Monero nodes **cannot sync the blockchain over Tor or I2P,** but the node can broadcast transactions and *let users connect* over these anonymizing networks.
 
-To set this up, first install [Tor](/server/tor) and/or [I2P](/server/i2p).
+To set this up, first install [Tor](/server/tor-daemon) and/or [I2P](/server/i2p-daemon).
 
 When creating a hidden service, create the following configuration:
 
@@ -161,7 +161,7 @@ cat /var/lib/tor/monerod/hostname
 
 ### I2P
 
-Edit `tunnels.conf` (Which may be located in `/home/i2p/.i2pd/` if you followed [this](/i2p) guide) and add the following tunnels:
+Edit `tunnels.conf` (Which may be located in `/etc/i2pd/` if you followed [this](/server/i2p-daemon) and add the following tunnels:
 
 ```systemd
 [monerod]

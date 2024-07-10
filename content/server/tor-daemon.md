@@ -46,9 +46,9 @@ apt update
 apt install tor deb.torproject.org-keyring
 ```
 
-## Hidden Service
+## Hidden Services
 
-Tor can proxy any traffic you wish to give it. This includes [webservers](/server/nginx), [Monero nodes](/server/monerod/#tori2p-setup), and even [XMPP chat.](/server/prosody) This guide will use an NGINX website as an example, especially to highlight the special features one can use in NGINX to enhance the Tor experience.
+Tor can proxy any TCP-based traffic you wish to give it. This includes [webservers](/server/nginx), [Monero nodes](/server/monerod/#tor), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example, especially to highlight the special features one can use in NGINX to enhance the Tor experience.
 
 ### Configuring Tor
 
@@ -62,7 +62,7 @@ HiddenServicePort 80 127.0.0.1:80
 
 Note the directory, `/var/lib/tor/{{<hl>}}example.org{{</hl>}}/`. This is where Tor will generate the **public and secret keys** to your website. **These are the keys that give your site its unique address.**
 
-#### Optional: Vanity Addresses
+#### Optional: Generating a Vanity Address
 
 If you run Tor with the configuration above, it will generate a random secret key (`hs_ed25519_secret_key`) with a matching address made up of 56 characters.
 
@@ -155,11 +155,12 @@ server {
 }
 ```
 
-### Running the Hidden Service
+### Running the Hidden Services
 
-You can now run the hidden service by restarting the Tor daemon:
+You can now run the hidden service by starting and enabling the Tor daemon:
 ```sh
-systemctl restart tor
+systemctl start tor
+systemctl enable tor
 ```
 
 To access your new hidden service, use the Tor browser or any other browser connected through Tor, and enter your service's address:

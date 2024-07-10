@@ -42,7 +42,7 @@ Isso is not included in Debian 12's repositories, so we're gonna need to set up 
 Install dependencies first:
 
 ```sh
-apt-get install python3-setuptools python3-virtualenv python3-dev
+apt install python3-setuptools python3-virtualenv python3-dev
 ```
 
 Then let's download the latest release and set up our virtualenv:
