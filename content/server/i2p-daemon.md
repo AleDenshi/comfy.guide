@@ -240,4 +240,4 @@ To use this browser you have to follow these simple steps.
 
 5. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
 
-> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for desktop use, if you want to enable it you need to compile i2pd yourself, for more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
+> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for client use, if you want to enable it you need to compile i2pd yourself, for more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
