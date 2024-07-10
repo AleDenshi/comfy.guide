@@ -161,7 +161,7 @@ cat /var/lib/tor/monerod/hostname
 
 ### I2P
 
-Edit `tunnels.conf` (Which may be located in `/etc/i2pd/` if you followed [this](/server/i2p-daemon) guide) and add the following tunnels:
+Edit `tunnels.conf` (Which may be located in `/etc/i2pd/` if you followed [this](/server/i2p-daemon) and add the following tunnels:
 
 ```systemd
 [monerod]

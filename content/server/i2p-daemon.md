@@ -3,7 +3,7 @@ title: "I2P Daemon"
 description: 'Run a website on the invisible internet.'
 icon: 'i2p-daemon.svg'
 date: 2024-07-07
-#ports: [80, 443]
+ports: [8080]
 
 ## Author Information
 author: "David Uhden"
@@ -114,7 +114,7 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
 3. Compile the tools using `make`:
 
     ```sh
-    make -j$(nproc)
+    make
     ```
 
 4. Generate a vanity address using the `vain` tool:
@@ -142,7 +142,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 2. Use the contents of `auth_string.txt` to register your site on a registrar like [http://reg.i2p/add](http://reg.i2p/add) or [http://stats.i2p/i2p/addkey.html](http://stats.i2p/i2p/addkey.html).
 
-> You can also register subdomains with the `regaddr_3ld` tool to host other services under the same memorable address. For more information see the `i2pd-tools` [documentation on regaddr_3ld](https://github.com/purplei2p/i2pd-tools?tab=readme-ov-file#regaddr_3ld).
+> You can also register subdomains with the `regaddr_3ld` tool to host other services under the same memorable address. For more information refer to the `i2pd-tools` [documentation on regaddr_3ld](https://github.com/purplei2p/i2pd-tools?tab=readme-ov-file#regaddr_3ld).
 
 ## Getting Your I2P Hostname
 
@@ -198,7 +198,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 ### Clarifications
 
-Nginx will listen on port 8080, and i2pd will forward your port 8080 to the I2P site port 80. This setup avoids the need to deal with server names.
+NGINX will listen on port 8080, and i2pd will forward port 8080 requests to port 80. This configuration avoids the need to deal with server names.
 
 Now your website should be accessible via the I2P network using your generated I2P hostname.
 
@@ -210,9 +210,10 @@ The I2Pd browser is a pre-configured version of Firefox ESR for its use on the I
 
 To use this browser you have to follow these simple steps.
 
-1. Clone the `i2pd-browser` repository:
+1. Install screen and clone the `i2pd-browser` repository:
 
     ```sh
+    apt install screen
     git clone https://github.com/daviduhden/i2pd-browser/
     cd i2pd-browser
     ```
@@ -238,6 +239,6 @@ To use this browser you have to follow these simple steps.
     ./start-i2pd-browser.desktop
     ```
 
-5. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works.
+5. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
 
 > Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for desktop use, if you want to enable it you need to compile i2pd yourself, for more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
