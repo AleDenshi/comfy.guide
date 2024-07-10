@@ -42,7 +42,7 @@ I2P, also known as the "Invisible Internet Project," is a decentralized anonymiz
 
 ## Installing I2P
 
-To get the latest version of i2pd, you need to [add the i2pd repositories to your system](https://repo.i2pd.xyz/):
+To get the latest version of i2pd, you need to [add the i2pd repositories to your system](https://repo.i2pd.xyz/).
 
 1. Install `apt-transport-https` and `gpg` packages:
 
@@ -50,7 +50,7 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
     apt install apt-transport-https gpg
     ```
 
-2. Automatically add the repository with a script:
+2. Automatically add the repository with a bash script:
 
     ```sh
     wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
@@ -63,9 +63,16 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
     apt install i2pd
     ```
 
+4. Start and enable the i2pd service:
+
+    ```sh
+    systemctl start i2pd
+    systemctl enable i2pd
+    ```
+
 ## Hidden Services
 
-I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](/server/prosody). This guide will use an NGINX website as an example.
+I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
 
 ## Configuring I2P
 
@@ -89,18 +96,18 @@ Next, configure the i2pd daemon. The configuration files are located in `/etc/i2
 
 If you run `i2pd` with the above configuration, it will generate a random private key (`example.dat`) for your website at `/var/lib/i2pd/` with a corresponding address made up of 52 random characters.
 
-To pre-generate a private key and create a "vanity" address, install `i2pd-tools`.
+To pre-generate a private key and create a "vanity" address, install [i2pd-tools](https://github.com/purplei2p/i2pd-tools).
 
 1. Clone the `i2pd-tools` repository:
 
     ```sh
     git clone --recursive https://github.com/purplei2p/i2pd-tools
+    cd i2pd-tools
     ```
 
 2. Install dependencies:
 
     ```sh
-    cd i2pd-tools
     sh dependencies.sh
     ```
 
@@ -113,8 +120,9 @@ To pre-generate a private key and create a "vanity" address, install `i2pd-tools
 4. Generate a vanity address using the `vain` tool:
 
     ```sh
-    ./vain example
+    ./vain web
     ```
+> Please note: The more characters you add to your filter, the longer the program will take to generate the address! Running it with `web` may only take a few seconds, but running it with `website` may take weeks!
 
     This command will output a new set of private keys named `private.dat`. Copy this file to your i2p configuration:
 
@@ -134,13 +142,14 @@ To register your site with a registrar for a more memorable address, use the `re
 
 2. Use the contents of `auth_string.txt` to register your site on a registrar like [http://reg.i2p/add](http://reg.i2p/add) or [http://stats.i2p/i2p/addkey.html](http://stats.i2p/i2p/addkey.html).
 
+> You can also register subdomains with the `regaddr_3ld` tool to host other services under the same memorable address. For more information see the `i2pd-tools` [documentation on regaddr_3ld](https://github.com/purplei2p/i2pd-tools?tab=readme-ov-file#regaddr_3ld).
+
 ## Getting Your I2P Hostname
 
-1. Start and enable the i2pd service:
+1. Restart the i2pd service:
 
     ```sh
-    systemctl start i2pd
-    systemctl enable i2pd
+    systemctl restart i2pd
     ```
 
 2. Access your I2P hostname through a command-line browser by visiting `http://127.0.0.1:7070/?page=i2p_tunnels`. You can use a terminal browser such as lynx or w3m.
@@ -151,7 +160,7 @@ To register your site with a registrar for a more memorable address, use the `re
     printf "%s.b32.i2p\n" $(head -c 391 /var/lib/i2pd/example.dat | sha256sum | xxd -r -p | base32 | sed s/=//g | tr A-Z a-z)
     ```
 
-    >(If you've generated your own keys for a vanity address, verify that i2pd is reading those keys correctly by checking that the address matches the one generated with the `vain` command.)*
+>If you've generated your own keys for a vanity address, verify that i2pd is reading those keys correctly by checking that the address matches the one generated with the `vain` command.
 
 ## Adding the NGINX Config
 
@@ -181,7 +190,7 @@ To register your site with a registrar for a more memorable address, use the `re
     ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/
     ```
 
-5. Restart NGINX to apply the changes:
+4. Restart NGINX to apply the changes:
 
     ```sh
     systemctl restart nginx
@@ -193,27 +202,42 @@ Nginx will listen on port 8080, and i2pd will forward your port 8080 to the I2P 
 
 Now your website should be accessible via the I2P network using your generated I2P hostname.
 
-## Configuring a Firefox-based browser to use I2P
+## Connecting to your website
 
-> To use I2P on a Linux desktop OS, it is necessary to install and start/enable the i2pd daemon.
+The I2Pd browser is a pre-configured version of Firefox ESR for its use on the I2P network, it is the fastest and easiest way to start surfing the web on the Invisible Internet.
 
-To configure your Firefox-based browser for use with I2P, follow these steps:
+> To use this browser you need to have previously [installed](https://i2pd.readthedocs.io/en/latest/user-guide/install/#linux) I2Pd on your Linux system. 
 
-1. Click the hamburger menu (three horizontal lines) in the top right corner of your browser.
-![](firefox-browser-config-1)
-2. Click the small search bar, search for "network settings," and click "Settings" on the right of "Network Settings."
-![](firefox-browser-config-2)
-3. Enable "Manual proxy configuration."
-4. Set the HTTP proxy to `127.0.0.1` and the port to `4444`.
-5. Select "Also use this proxy for HTTPS."
-6. Add `localhost` and `127.0.0.1` to the "No proxy for" field, then save your changes by clicking "OK."
-![](firefox-browser-config-3)
-7. Go to "Privacy and Security" in the settings, scroll down to "HTTPS-Only Mode," and select "Don't enable HTTPS-Only Mode." This will prevent annoying "No HTTPS version available" screens when browsing I2P sites.
-![](firefox-browser-config-4)
-8. Open a new tab and enter `about:config` in the address bar.
-9. Search for `media.peerConnection.ice.proxy_only` and set it to `true`.
-![](firefox-browser-config-5)
-10. Search for `network.dns.disableIPV6` and set it to `true`. This will prevent your ISP from seeing the root URL of the I2P sites you visit.
-![](firefox-browser-config-6)
-11. Visit [http://notbob.i2p](http://notbob.i2p) to test if everything works correctly.
-![](firefox-browser-config-7)
+To use this browser you have to follow these simple steps.
+
+1. Clone the `i2pd-browser` repository:
+
+    ```sh
+    git clone https://github.com/daviduhden/i2pd-browser/
+    cd i2pd-browser
+    ```
+
+2. Build the pre-configured Firefox using the `build` shell script from the `build` directory:
+
+    ```sh
+    cd build
+    ./build
+    ```
+
+3. Run I2Pd by executing the `i2pd` shell script from `i2pd` directory:
+
+    ```sh
+    cd ../i2pd
+    ./i2pd
+    ```
+
+4. Run Firefox by executing the `start-i2pd-browser.desktop` desktop entry:
+
+    ```sh
+    cd ../
+    ./start-i2pd-browser.desktop
+    ```
+
+5. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works.
+
+> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for desktop use, if you want to enable it you need to compile i2pd yourself, for more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
