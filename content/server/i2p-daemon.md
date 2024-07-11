@@ -27,15 +27,19 @@ I2P, also known as the "Invisible Internet Project," is a decentralized anonymiz
    - **Tor**: Uses a centralized directory system to manage and maintain the network. This directory helps users find nodes and establish circuits for their traffic.
    - **I2P**: Employs a fully decentralized network without a central directory. Nodes use a distributed hash table (DHT) to find routes dynamically.
 
-2. **Routing Mechanism**:
+2. **Network Participation**:
+   - **Tor**: Users are only clients by default, which means that they do not relay traffic unless they configure their node to act as a relay or exit node, which requires manual configuration.
+   - **I2P**: All users act as nodes by default, which means that they automatically share bandwidth to help route traffic for other users, enhancing the overall capacity and resilience of the network through decentralization.
+
+3. **Routing Mechanism**:
    - **Tor**: Utilizes "circuit-based" routing where a predetermined path is set for each connection, and data is passed through this fixed path.
    - **I2P**: Uses "packet-based" routing where each packet may take a different path to reach the destination. This can potentially enhance resilience and reduce latency.
 
-3. **Traffic and Services**:
+4. **Traffic and Services**:
    - **Tor**: Primarily focuses on enabling anonymous web browsing and offers access to regular websites through its network. It also supports onion services (hidden services) accessible only within the Tor network.
    - **I2P**: Designed to support a wide range of applications including web browsing, email, file sharing, and chat within its network. It provides an internal ecosystem of services, accessible only through I2P.
 
-4. **Protocol Support**:
+5. **Protocol Support**:
    - **Tor**: Supports only TCP, which is suitable for web browsing and other TCP-based applications.
    - **I2P**: Supports both TCP and UDP protocols, making it more versatile for different types of applications, including those that require real-time communication or are optimized for UDP.
 
@@ -225,7 +229,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 ### Clarifications
 
-NGINX will listen for requests on port 8080 and i2pd will listen for requests on port 80 and forward them internally to NGINX on port 8080 through the tunnel configured previously. This configuration avoids the need to deal with server names.
+NGINX will listen for requests on port 8080 and i2pd will listen for requests on port 4440 and forward them internally to NGINX on port 8080 through the HTTP tunnel configured previously. This configuration avoids the need to deal with server names.
 
 Now your website should be accessible via the I2P network using your generated base32 I2P hostname, or at the address registered with the registrar, but note that the latter may take some time to be accessible as the address book has to be updated in the clients.
 
