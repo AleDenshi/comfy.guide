@@ -151,7 +151,7 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
     ```
 > Please note: The more characters you add to your filter, the longer the program will take to generate the address! Running it with `web` may only take a few seconds, but running it with `website` may take weeks!
 
-    This command will output a new set of private keys named `private.dat`. Copy this file to your i2p configuration:
+This command will output a new set of private keys named `private.dat`. Copy this file to `/var/lib/i2pd/`:
 
     ```sh
     cp private.dat /var/lib/i2pd/example.dat
