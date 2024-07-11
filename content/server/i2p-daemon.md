@@ -229,7 +229,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 ### Clarifications
 
-NGINX will listen for requests on port 8080 and i2pd will listen for requests on port 4440 and forward them internally to NGINX on port 8080 through the HTTP tunnel configured previously. This configuration avoids the need to deal with server names.
+I2Pd will listen for HTTP requests on port 4440 and forward them internally to NGINX on port 8080 through the tunnel configured previously. This configuration avoids the need to deal with server names.
 
 Now your website should be accessible via the I2P network using your generated base32 I2P hostname, or at the address registered with the registrar, but note that the latter may take some time to be accessible as the address book has to be updated in the clients.
 
