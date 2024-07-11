@@ -16,7 +16,7 @@ links:
 crypto:
   xmr: "497pJc7X4xqKvcLBLpSUtRgWqMMyo24u4btCos3cak6gbMkpobgSU6492ztUcUBghyeHpYeczB55s38NpuHoH5WGNSPDRMH"
   btc: "3MDoGJW9TLMTCDGrR9bLgWXfm6sjmgy86f"
-  
+
 ---
 
 I2P, also known as the "Invisible Internet Project," is a decentralized anonymizing network designed to protect users' privacy and anonymity. I2P uses "[garlic routing](https://geti2p.net/en/docs/how/garlic-routing)", a technique that bundles multiple messages together into a single encrypted packet. This offers advantages over onion routing by increasing the efficiency and security of the network, as it is harder for adversaries to correlate packets and trace them back to their source.
@@ -45,29 +45,29 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
 
 1. Install `apt-transport-https` and `gpg` packages:
 
-    ```sh
-    apt install apt-transport-https gpg
-    ```
+	```sh
+	apt install apt-transport-https gpg
+	```
 
 2. Automatically add the repository with a bash script:
 
-    ```sh
-    wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
-    ```
+	```sh
+	wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
+	```
 
 3. After adding the repository, install i2pd:
 
-    ```sh
-    apt update
-    apt install i2pd
-    ```
+	```sh
+	apt update
+	apt install i2pd
+	```
 
 4. Start and enable the i2pd service:
 
-    ```sh
-    systemctl start i2pd
-    systemctl enable i2pd
-    ```
+	```sh
+	systemctl start i2pd
+	systemctl enable i2pd
+	```
 
 ## Hidden Services
 
@@ -79,13 +79,13 @@ Next, configure the i2pd daemon. The configuration files are located in `/etc/i2
 
 1. Edit the `tunnels.conf` file and add the following configuration:
 
-    ```ini
-    [example]
-    type = http
-    host = 127.0.0.1
-    port = 8080
-    keys = example.dat
-    ```
+	```ini
+	[example]
+	type = http
+	host = 127.0.0.1
+	port = 8080
+	keys = example.dat
+	```
 
 2. You can comment out or remove the default tunnels in the configuration file.
 
@@ -97,26 +97,26 @@ If your system has a firewall or you are behind a NAT you should configure a por
 
 1. Edit the `i2pd.conf` file located in `/etc/i2pd/` and look for this section:
 
-    ```ini
-    ## Port to listen for connections
-    ## ...
-    # port = 4567
-    ```
+	```ini
+	## Port to listen for connections
+	## ...
+	# port = 4567
+	```
 
 2. Uncomment the `port` option and change its value to a [port number that is not used](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers) by any service (such as `4440`).
 
-    ```ini
-    ## Port to listen for connections
-    ## ...
-    port = 4440
-    ```
+	```ini
+	## Port to listen for connections
+	## ...
+	port = 4440
+	```
 3. Allow TCP and UDP connections on the port chosen in your firewall:
 
-    ```sh
-    ufw allow in 4440/tcp
-    ufw allow in 4440/udp
-    ```
-    
+	```sh
+	ufw allow in 4440/tcp
+	ufw allow in 4440/udp
+	```
+	
 4. If you are behind a NAT you should configure your router rules accordingly.
 
 ### Optional: Generating a Vanity Address
@@ -127,35 +127,35 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
 
 1. Clone the `i2pd-tools` repository:
 
-    ```sh
-    git clone --recursive https://github.com/purplei2p/i2pd-tools
-    cd i2pd-tools
-    ```
+	```sh
+	git clone --recursive https://github.com/purplei2p/i2pd-tools
+	cd i2pd-tools
+	```
 
 2. Install dependencies:
 
-    ```sh
-    sh dependencies.sh
-    ```
+	```sh
+	sh dependencies.sh
+	```
 
 3. Compile the tools using `make`:
 
-    ```sh
-    make
-    ```
+	```sh
+	make
+	```
 
 4. Generate a vanity address using the `vain` tool:
 
-    ```sh
-    ./vain web
-    ```
+	```sh
+	./vain web
+	```
 > Please note: The more characters you add to your filter, the longer the program will take to generate the address! Running it with `web` may only take a few seconds, but running it with `website` may take weeks!
 
 This command will output a new set of private keys named `private.dat`. Copy this file to `/var/lib/i2pd/`:
 
-    ```sh
-    cp private.dat /var/lib/i2pd/example.dat
-    ```
+	```sh
+	cp private.dat /var/lib/i2pd/example.dat
+	```
 
 ### Optional: Authentication Strings for Registrars
 
@@ -163,9 +163,9 @@ To register your site with a registrar for a more memorable address, use the `re
 
 1. Generate the authentication string:
 
-    ```sh
-    ./regaddr private.dat example.i2p > auth_string.txt
-    ```
+	```sh
+	./regaddr private.dat example.i2p > auth_string.txt
+	```
 
 2. Use the contents of `auth_string.txt` to register your site on a registrar like [http://reg.i2p/add](http://reg.i2p/add) or [http://stats.i2p/i2p/addkey.html](http://stats.i2p/i2p/addkey.html).
 
@@ -175,17 +175,17 @@ To register your site with a registrar for a more memorable address, use the `re
 
 1. Restart the i2pd service:
 
-    ```sh
-    systemctl restart i2pd
-    ```
+	```sh
+	systemctl restart i2pd
+	```
 
 2. Access your I2P hostname through a command-line browser by visiting `http://127.0.0.1:7070/?page=i2p_tunnels`. You can use a terminal browser such as lynx or w3m.
 
 3. Alternatively, you can use the following command to find your hostname:
 
-    ```sh
-    printf "%s.b32.i2p\n" $(head -c 391 /var/lib/i2pd/example.dat | sha256sum | xxd -r -p | base32 | sed s/=//g | tr A-Z a-z)
-    ```
+	```sh
+	printf "%s.b32.i2p\n" $(head -c 391 /var/lib/i2pd/example.dat | sha256sum | xxd -r -p | base32 | sed s/=//g | tr A-Z a-z)
+	```
 
 >If you've generated your own keys for a vanity address, verify that i2pd is reading those keys correctly by checking that the address matches the one generated with the `vain` command.
 
@@ -193,35 +193,35 @@ To register your site with a registrar for a more memorable address, use the `re
 
 1. Create a new server block configuration file for your site. Open a new file in the `/etc/nginx/sites-available/` directory:
 
-    ```sh
-    touch /etc/nginx/sites-available/example
-    ```
+	```sh
+	touch /etc/nginx/sites-available/example
+	```
 
 2. Add the following server block configuration to the file:
 
-    ```nginx
-    server {
-        listen 127.0.0.1:8080;
-        root /var/www/example;
-        index index.html;
+	```nginx
+	server {
+		listen 127.0.0.1:8080;
+		root /var/www/example;
+		index index.html;
 
-        location / {
-            try_files $uri $uri/ =404;
-        }
-    }
-    ```
+		location / {
+			try_files $uri $uri/ =404;
+		}
+	}
+	```
 
 3. Enable the site by creating a symbolic link in the `/etc/nginx/sites-enabled/` directory:
 
-    ```sh
-    ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/
-    ```
+	```sh
+	ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/
+	```
 
 4. Restart NGINX to apply the changes:
 
-    ```sh
-    systemctl restart nginx
-    ```
+	```sh
+	systemctl restart nginx
+	```
 
 ### Clarifications
 
@@ -239,37 +239,37 @@ To use this browser you have to follow these simple steps.
 
 1. Install the dependencies if they are not already installed.
 
-    ```sh
-    apt install curl tar screen
-    ```
-    
+	```sh
+	apt install curl tar screen
+	```
+	
 3. Clone the `i2pd-browser` repository:
 
-    ```sh
-    git clone https://github.com/daviduhden/i2pd-browser/
-    cd i2pd-browser
-    ```
+	```sh
+	git clone https://github.com/daviduhden/i2pd-browser/
+	cd i2pd-browser
+	```
 
 4. Build the pre-configured Firefox using the `build` shell script from the `build` directory:
 
-    ```sh
-    cd build
-    ./build
-    ```
+	```sh
+	cd build
+	./build
+	```
 
 5. Run I2Pd by executing the `i2pd` shell script from `i2pd` directory:
 
-    ```sh
-    cd ../i2pd
-    ./i2pd
-    ```
+	```sh
+	cd ../i2pd
+	./i2pd
+	```
 
 6. Run Firefox by executing the `start-i2pd-browser.desktop` desktop entry:
 
-    ```sh
-    cd ../
-    ./start-i2pd-browser.desktop
-    ```
+	```sh
+	cd ../
+	./start-i2pd-browser.desktop
+	```
 
 7. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
 
