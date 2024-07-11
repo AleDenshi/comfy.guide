@@ -110,7 +110,7 @@ If your system has a firewall or you are behind a NAT you should configure a por
 	## ...
 	port = 4440
 	```
-3. Allow TCP and UDP connections on the port chosen in your firewall:
+3. Allow TCP and UDP connections on the selected port in your firewall:
 
 	```sh
 	ufw allow in 4440/tcp
