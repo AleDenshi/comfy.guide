@@ -3,7 +3,7 @@ title: "I2P Daemon"
 description: 'Run a website on the invisible internet.'
 icon: 'i2p-daemon.svg'
 date: 2024-07-07
-ports: [8080]
+ports: [4440, 8080]
 
 ## Author Information
 author: "David Uhden"
@@ -90,6 +90,34 @@ Next, configure the i2pd daemon. The configuration files are located in `/etc/i2
 2. You can comment out or remove the default tunnels in the configuration file.
 
 > Tunnels provide a more secure method for using clients over I2P compared to utilizing a SOCKS proxy. Software may still leak sensitive information even when configured to use a SOCKS proxy. This is the reason services hosted over I2P that require a SOCKS proxy are uncommon. For more information refer to the [SOCKS and SOCKS proxies](https://geti2p.net/en/docs/api/socks) article.
+
+### Improving connectivity
+
+If your system has a firewall or you are behind a NAT you should configure a port for incoming connections.
+
+1. Edit the `i2pd.conf` file located in `/etc/i2pd/` and look for this section:
+
+    ```ini
+    ## Port to listen for connections
+    ## ...
+    # port = 4567
+    ```
+
+2. Uncomment the `port` option and change its value to a [port number that is not used](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers) by any service (such as `4440`).
+
+    ```ini
+    ## Port to listen for connections
+    ## ...
+    port = 4440
+    ```
+3. Allow TCP and UDP connections on the port chosen in your firewall:
+
+    ```sh
+    ufw allow in 4440/tcp
+    ufw allow in 4440/udp
+    ```
+    
+4. If you are behind a NAT you should configure your router rules accordingly.
 
 ### Optional: Generating a Vanity Address
 
@@ -209,35 +237,40 @@ The I2Pd browser is a pre-configured version of Firefox ESR for its use on the I
 
 To use this browser you have to follow these simple steps.
 
-1. Install screen and clone the `i2pd-browser` repository:
+1. Install the dependencies if they are not already installed.
 
     ```sh
-    apt install screen
+    apt install curl tar screen
+    ```
+    
+3. Clone the `i2pd-browser` repository:
+
+    ```sh
     git clone https://github.com/daviduhden/i2pd-browser/
     cd i2pd-browser
     ```
 
-2. Build the pre-configured Firefox using the `build` shell script from the `build` directory:
+4. Build the pre-configured Firefox using the `build` shell script from the `build` directory:
 
     ```sh
     cd build
     ./build
     ```
 
-3. Run I2Pd by executing the `i2pd` shell script from `i2pd` directory:
+5. Run I2Pd by executing the `i2pd` shell script from `i2pd` directory:
 
     ```sh
     cd ../i2pd
     ./i2pd
     ```
 
-4. Run Firefox by executing the `start-i2pd-browser.desktop` desktop entry:
+6. Run Firefox by executing the `start-i2pd-browser.desktop` desktop entry:
 
     ```sh
     cd ../
     ./start-i2pd-browser.desktop
     ```
 
-5. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
+7. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
 
-> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for client use, if you want to enable it you need to compile i2pd yourself, for more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
+> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux, MacOS or *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for client use. If you want to enable it you need to compile i2pd yourself. For more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
