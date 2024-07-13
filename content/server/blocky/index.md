@@ -1,7 +1,7 @@
 ---
 ## Guide Information
 title: Blocky DNS
-date: 2024-06-22
+date: 2024-07-12
 icon: blocky.svg
 description: A secure DNS server that blocks ads.
 ports: [53, 443, 843]
@@ -35,7 +35,7 @@ tar xvf blocky_*
 
 ## Configuration
 
-Create a new file in `/opt/blocky` named `config.yml` and place the following configuration in it:
+Create a new file in `/opt/blocky` named `config.yaml` and place the following configuration in it:
 
 ```yml
 # Upstream DNS server configuration
@@ -135,8 +135,8 @@ setcap CAP_NET_BIND_SERVICE=+eip /opt/blocky/blocky
 Finally, add your certbot certificates to the `/opt/blocky/config.yaml` file as follows:
 
 ```yaml
-certFile: /usr/share/certs/{{<hl>}}dns.example.org{{</hl>}}/fullchain.pem
-keyFile: /usr/share/certs/{{<hl>}}dns.example.org{{</hl>}}/privkey.pem
+certFile: /opt/blocky/certs/fullchain.pem
+keyFile: /opt/blocky/certs/privkey.pem
 ``` 
 
 ### Blocking Domains
