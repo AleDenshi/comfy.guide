@@ -18,7 +18,7 @@
 		<!-- So long as the "author" variable exists, print out any info -->
 	
 		<p>
-		This page was made by: <b>{{ $author }}</b>
+		This page was made by: <b>{{ $params.author }}</b>
 		</p>
 		
 		{{- range $key, $value := $params.links }}

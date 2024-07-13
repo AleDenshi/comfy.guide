@@ -1,3 +1,4 @@
+---
 ## Guide Information
 title: "I2P Daemon"
 description: 'Run a website on the invisible internet.'
@@ -6,22 +7,12 @@ date: 2024-07-07
 ports: [4440, 8080]
 
 ## Author Information
-author: "David Uhden"
-
-## Web presense links
-links:
-  website: "https://github.com/daviduhden"
-
-## Cryptocurrency donation options
-crypto:
-  xmr: "497pJc7X4xqKvcLBLpSUtRgWqMMyo24u4btCos3cak6gbMkpobgSU6492ztUcUBghyeHpYeczB55s38NpuHoH5WGNSPDRMH"
-  btc: "3MDoGJW9TLMTCDGrR9bLgWXfm6sjmgy86f"
-
+author: daviduhden
 ---
 
 I2P, also known as the "Invisible Internet Project," is a decentralized anonymizing network designed to protect users' privacy and anonymity. I2P uses "[garlic routing](https://geti2p.net/en/docs/how/garlic-routing)", a technique that bundles multiple messages together into a single encrypted packet. This offers advantages over onion routing by increasing the efficiency and security of the network, as it is harder for adversaries to correlate packets and trace them back to their source.
 
-## Some Technical Differences Between Tor and I2P
+## Differences Between Tor and I2P
 
 1. **Network Structure**:
    - **Tor**: Uses a centralized directory system to manage and maintain the network. This directory helps users find nodes and establish circuits for their traffic.
@@ -157,9 +148,9 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
 
 This command will output a new set of private keys named `private.dat`. Copy this file to `/var/lib/i2pd/`:
 
-	```sh
-	cp private.dat /var/lib/i2pd/example.dat
-	```
+```sh
+cp private.dat /var/lib/i2pd/example.dat
+```
 
 ### Optional: Authentication Strings for Registrars
 

@@ -1,7 +1,7 @@
 ---
 ## Guide Information
 title: "Isso"
-description: A commenting server for your self-hosted blog
+description: A commenting server for your self-hosted blog.
 icon: isso.svg
 date: 2024-03-17
 ports: [80, 443]
