@@ -1,5 +1,7 @@
+# Author Information
 author: "Denshi"
 
+# Web presense links
 links:
   website: "https://denshi.org"
   tor: "http://denshibjj744ww6lu7n4rjz3ufn7232hhbyrl3wyit2rz77f24p3gbid.onion"
@@ -7,5 +9,6 @@ links:
   xmpp: "xmpp:alex@denshi.org"
   email: "mailto:alex@denshi.org"
 
+# Cryptocurrency donation options
 crypto:
   xmr: "48dnPpGgo8WernVJp5VhvhaX3u9e46NujdYA44u8zuMdETNC5jXiA9S7JoYMM6qRt1ZcKpt1J3RZ3JPuMyXetmbHH7Mnc9C"
