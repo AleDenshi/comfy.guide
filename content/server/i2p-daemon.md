@@ -150,9 +150,9 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
 
 This command will output a new set of private keys named `private.dat`. Copy this file to `/var/lib/i2pd/`:
 
-	```sh
-	cp private.dat /var/lib/i2pd/example.dat
-	```
+```sh
+cp private.dat /var/lib/i2pd/example.dat
+```
 
 ### Optional: Authentication Strings for Registrars
 
