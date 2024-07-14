@@ -7,10 +7,12 @@ date: 2024-07-07
 ports: [4440, 8080]
 
 ## Author Information
-author: daviduhden
+author: "David Uhden"
 ---
 
 I2P, also known as the "Invisible Internet Project," is a decentralized anonymizing network designed to protect users' privacy and anonymity. I2P uses "[garlic routing](https://geti2p.net/en/docs/how/garlic-routing)", a technique that bundles multiple messages together into a single encrypted packet. This offers advantages over onion routing by increasing the efficiency and security of the network, as it is harder for adversaries to correlate packets and trace them back to their source.
+
+I2Pd, also known as the "I2Pd Daemon", is an alternative implementation of the I2P router written in C++. Unlike the standard I2P implementation written in Java, I2Pd is designed to be lightweight and resource efficient. I2Pd maintains compatibility with the I2P network, allowing users to access the same services and benefits while providing a better performance.
 
 ## Differences Between Tor and I2P
 
@@ -66,7 +68,7 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
 
 ## Hidden Services
 
-I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
+I2Pd can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
 
 ## Configuring I2Pd
 
@@ -148,9 +150,9 @@ To pre-generate a private key and create a "vanity" address, install [i2pd-tools
 
 This command will output a new set of private keys named `private.dat`. Copy this file to `/var/lib/i2pd/`:
 
-```sh
-cp private.dat /var/lib/i2pd/example.dat
-```
+	```sh
+	cp private.dat /var/lib/i2pd/example.dat
+	```
 
 ### Optional: Authentication Strings for Registrars
 
