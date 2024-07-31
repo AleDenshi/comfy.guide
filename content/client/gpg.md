@@ -71,7 +71,7 @@ There are 3 ways to sign a file:
 "Normal" signing is done as follows:
 
 ```sh
-gpg --sign {{<hl>}}file.txt{{</hl>}}
+gpg --sign {{<hl>}}file.txt{{</hl>}} -u {{<hl>}}alex@denshi.org{{</hl>}}
 ```
 
 This would produce `file.txt.gpg`, a [compressed binary file.](file.txt.gpg)
@@ -92,7 +92,7 @@ gpg --decrypt {{<hl>}}file.txt.gpg{{</hl>}}
 Clearsinging uses the `--clearsign` option:
 
 ```sh
-gpg --clearsign {{<hl>}}file.txt{{</hl>}}
+gpg --clearsign {{<hl>}}file.txt{{</hl>}} -u {{<hl>}}alex@denshi.org{{</hl>}}
 ```
 
 This would produce `file.txt.asc` with the following plaintext file and signature:
@@ -134,7 +134,7 @@ gpg --decrypt {{<hl>}}file.txt.asc{{</hl>}}
 Detached signatures can be created as follows:
 
 ```sh
-gpg --detach-sig {{<hl>}}file.txt{{</hl>}}
+gpg --detach-sig {{<hl>}}file.txt{{</hl>}} -u {{<hl>}}alex@denshi.org{{</hl>}}
 ```
 
 This would produce [`file.txt.sig`](file.txt.sig), which can be distributed alongside the original `file.txt` for anyone to optionally verify the signature.
