@@ -7,10 +7,14 @@ date: 2024-07-07
 ports: [4440, 8080]
 
 ## Author Information
-author: daviduhden
+author: "David Uhden"
 ---
 
-I2P, also known as the "Invisible Internet Project," is a decentralized anonymizing network designed to protect users' privacy and anonymity. I2P uses "[garlic routing](https://geti2p.net/en/docs/how/garlic-routing)", a technique that bundles multiple messages together into a single encrypted packet. This offers advantages over onion routing by increasing the efficiency and security of the network, as it is harder for adversaries to correlate packets and trace them back to their source.
+# What is I2P and I2Pd?
+
+I2P, also known as the Invisible Internet Project, is a decentralized anonymizing network designed to protect the privacy and anonymity of its users. Like Tor, I2P encrypts data through multiple layers and routes it through multiple nodes, with each node in the network decrypting one layer to reveal the next destination, thus hiding the origin and content of the data from intermediate nodes. The key difference with Tor is the way it handles data packets: Tor sends individual messages in separate packets, while I2P bundles multiple messages into a single packet. This technique, called [garlic routing](https://geti2p.net/en/docs/how/garlic-routing), can be thought of as an extension of the onion routing used by Tor. Garlic routing makes it harder for adversaries to perform traffic analysis and correlate packets to trace them back to their origin.
+
+I2Pd, also known as the "I2P Daemon", is an alternative implementation of the I2P router written in C++. Unlike the standard I2P implementation written in Java, I2Pd is designed to be lightweight and resource efficient. I2Pd maintains compatibility with the I2P network, allowing users to access the same services and benefits while providing a better performance.
 
 ## Differences Between Tor and I2P
 
@@ -64,9 +68,9 @@ To get the latest version of i2pd, you need to [add the i2pd repositories to you
 	systemctl enable i2pd
 	```
 
-## Hidden Services
+# Hidden Services
 
-I2P can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
+I2Pd can proxy any traffic you want to route through it. This includes [webservers](/server/nginx) (also called eepsites), [Monero nodes](/server/monerod/#i2p), and even [XMPP chat](https://i2pd.readthedocs.io/en/latest/tutorials/xmpp/). This guide will use an NGINX website as an example.
 
 ## Configuring I2Pd
 
@@ -166,7 +170,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 > You can also register subdomains with the `regaddr_3ld` tool to host other services under the same memorable address. For more information refer to the `i2pd-tools` [documentation on regaddr_3ld](https://github.com/purplei2p/i2pd-tools?tab=readme-ov-file#regaddr_3ld).
 
-## Getting Your I2P Hostname
+## Getting your I2P Hostname
 
 1. Restart the i2pd service:
 
@@ -184,7 +188,7 @@ To register your site with a registrar for a more memorable address, use the `re
 
 >If you've generated your own keys for a vanity address, verify that i2pd is reading those keys correctly by checking that the address matches the one generated with the `vain` command.
 
-## Adding the NGINX Config
+## Configuring NGINX
 
 1. Create a new server block configuration file for your site. Open a new file in the `/etc/nginx/sites-available/` directory:
 
@@ -268,4 +272,4 @@ To use this browser you have to follow these simple steps.
 
 7. Now you can access your web page and others on the Invisible Internet, simply enter the base32 address of the web page you have created to verify that it works. I recommend visiting the [notbob directory](http://notbob.i2p/) to find services in the I2P network.
 
-> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux and *BSD do not have built-in support for UPnP by default, which makes it very inconvenient for client use. If you want to enable it you need to compile i2pd yourself. For more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
+> Unfortunately, the pre-compiled i2pd binaries available for Unix-like operating systems such as Linux and *BSD do not have built-in support for UPnP by default. Without UPnP support, I2Pd cannot automatically open ports on the router, making it very inconvenient for client use. If you want to enable this, you will need to compile i2pd yourself. For more information refer to the [official documentation](https://i2pd.readthedocs.io/en/latest/devs/building/unix/).
