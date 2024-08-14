@@ -20,9 +20,7 @@ QEMU is emulation software.
 
 ## Installation
 
-```sh
-pacman -S qemu
-```
+Most Linux distributions provide a package for QEMU. An updated list of installation methods is present [here.](https://www.qemu.org/download/#linux)
 
 ## Creating a Disk
 
@@ -52,3 +50,7 @@ An example launch command using some of these flags would look like this:
 ```sh
 qemu-system-x86_64 -enable-kvm -cdrom {{<hl>}}diskimage.iso{{</hl>}} -boot menu=on -drive file={{<hl>}}image.img{{</hl>}} -m {{<hl>}}8G{{</hl>}} -cpu host -smp {{<hl>}}4{{</hl>}} -vga virtio
 ```
+
+### Enabling UEFI
+
+If you need to run a desktop virtual machine using UEFI, begin by installing OVMF.
