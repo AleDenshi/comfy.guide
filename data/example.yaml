@@ -1,7 +1,5 @@
-# Author name or nickname
 author: "Example"
 
-# Web presense links
 links:
   website:  "https://example.org"
   email:    "mailto:billy@example.org"
@@ -9,7 +7,6 @@ links:
   tor:      "http://ersreibej7r4rw6lu7n4rjz3ufn7232hhbyrl3wyit2rz77f24p3gbid.onion"
   i2p:      "http://a234tiky5uqsfq7ra2djupn4i2l7jep27pfedpzoxiaujsuql4za.b32.i2p"
 
-# Cryptocurrency donation options
 crypto:
   btc: "bc1q5k33fzcpg6n8clum8fjtav4ppwA9z8fj9jjl79"
   xmr: "48kaPpggo8yer5VJp56hvha23u9e56NujdYA44u8zuMdETNC5jXiA9S7JoYMM6qRt1ZcKpt1J3RZ3JPuMyXetmbHH7Mnc9C"
