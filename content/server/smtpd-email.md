@@ -202,7 +202,7 @@ To run with extra verbosity, execute the following commands:
 # smtpd -dv
 ```
 
-This will run the daemon directly in the terminal, where you can watch the output.
+This will run the daemon directly in the terminal, where you can watch the output. You can also pass `-T <trace>` to smtpd for debugging specific issues. See `man smtpd` for a list of options.
 
 You can use OpenSSL to connect as a client:
 
