@@ -92,7 +92,7 @@ pki example.com key "/etc/ssl/private/example.com.key"
 table passwd file:/etc/mail/passwd
 table aliases file:/etc/mail/aliases
 
-filter "dkimsign_ed25519" proc-exec "filter-dkimsign -d example.com -s default \
+filter dkimsign proc-exec "filter-dkimsign -d example.com -s default \
         -a ed25519-sha256 -k /etc/mail/dkim/private.ed25519.key" user _dkimsign group _dkimsign
 filter rspamd proc-exec "filter-rspamd"
 
@@ -103,7 +103,8 @@ listen on bse0 \
         filter rspamd
 # outbound
 listen on bse0 port 587 \
-        tls-require pki example.com auth <passwd>
+        tls-require pki example.com auth <passwd> \
+        filter dkimsign
 
 action local_mail maildir alias <aliases>
 action remote_mail lmtp "/var/dovecot/lmtp" rcpt-to
