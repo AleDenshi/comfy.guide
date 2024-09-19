@@ -244,3 +244,12 @@ verbose_ssl = yes
 ```
 
 Furthermore, the Dovecot website has an excellent manual on testing and troubleshooting. It can be found [here](https://doc.dovecot.org/2.3/admin_manual/test_installation).
+
+### Other resources
+
+Here are some other guides which you might find useful to cross-reference with this one.
+
+- [c0ffee.net](https://www.c0ffee.net/blog/mail-server-guide)
+- [unixdigest.com](https://www.unixdigest.com/tutorials/arch-linux-mail-server-tutorial-part-2-opensmtpd-dovecot-dkimproxy-and-lets-encrypt.html)
+- [poolp.org](https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd)
+- [omarpolo.com](https://www.omarpolo.com/post/opensmtd-dovecot-virtual-users.html)
