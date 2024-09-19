@@ -34,6 +34,14 @@ You will also need to generate SSL certificates for your domain. I recommend usi
 
 An rDNS record allows other email servers to make sure your IP address matches the domain it claims to be. How this is set up depends on how you are hosting your server. A lot of people will say that you need a VPS to self-host an email server but this isn't necessarily true. If you have an ISP that is willing to add an rDNS record for you, then you can host from home. Otherwise you need a VPS.
 
+You can check if you have an rDNS record like so:
+
+```
+dig +short -x <public ip>
+```
+
+This should respond with the domain name of you email server.
+
 ### DKIM (Domain Keys Identified Mail)
 
 If you are on OpenBSD, read `/usr/local/share/doc/pkg-readmes/opensmtpd-filter-dkimsign`. This file was put there when you installed `opensmtpd-filter-dkimsign`. You may also find other package readmes in that directory which can be useful.
@@ -55,6 +63,8 @@ SPF records are designed to prevent forgery. They allow you to specify rules abo
 zacoons.com:   v=spf a -all
 ```
 
+This will check that the sender's IP address matches an A record for zacoons.com.
+
 Read about SPF [here](http://www.open-spf.org/SPF_Record_Syntax) and check out what others do by running `dig +short TXT <domain>` (e.g. `dig +short TXT gmail.com`)
 
 ### DMARC (Domain-based Message Authentication, Reporting, and Conformance)
@@ -74,7 +84,7 @@ Read about DMARC [here](https://dmarc.org/overview) and check out what others do
 ### Configuring OpenSMTPD
 
 ```
-# /etc/smtpd.conf
+# /etc/mail/smtpd.conf
 
 pki example.com cert "/etc/ssl/example.com.fullchain.pem"
 pki example.com key "/etc/ssl/private/example.com.key"
