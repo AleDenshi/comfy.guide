@@ -125,7 +125,7 @@ e.g.
 
 ## Configuration
 
-### Configuring OpenSMTPD
+### OpenSMTPD
 
 ```
 # /etc/mail/smtpd.conf
@@ -190,7 +190,20 @@ The encrypted password is generated with
 ```
 It's not actually encrypted, just salted and hashed. Essentially it jumbles up the password so that it can't be read, only checked against.
 
-### Configuring Dovecot
+### Rspamd
+
+```
+# /etc/rspamd/local.d/dkim_signing.conf
+
+domain {
+    example.com {
+        path = "/etc/mail/dkim/example.com.key";
+        selector = "dkim";
+    }
+}
+```
+
+### Dovecot
 
 Before you do anything, make a backup of the original configuration.
 
