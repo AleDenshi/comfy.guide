@@ -14,17 +14,17 @@ author: zacoons
 
 For OpenBSD (`opensmtpd` should be installed by default):
 ```
-# pkg_add opensmtpd-filter-dkim opensmtpd-filter-rspamd rspamd dovecot
+# pkg_add opensmtpd-filter-rspamd rspamd dovecot
 ```
 
 For Arch Linux:
 ```
-# pacman -S opensmtpd opensmtpd-filter-dkim opensmtpd-filter-rspamd rspamd dovecot
+# pacman -S opensmtpd opensmtpd-filter-rspamd rspamd dovecot
 ```
 
 ## Prerequisites
 
-Open ports 25 (SMTP), 587 (SMTPS), and 993 (IMAPS). Port 25 will be used for delivery, 587 will be used for sending, and 993 will be used for serving mail with Dovecot.
+Open ports 25 (SMTP), 587 (SMTPS), and 993 (IMAPS). Port 25 will be used for incoming mail, 587 will be used for outgoing mail, and 993 will be used for serving mail to your email clients (e.g. neomutt).
 
 You will also need to generate SSL certificates for your domain. I recommend using `acme-client` shipped with OpenBSD.
 
@@ -32,52 +32,96 @@ You will also need to generate SSL certificates for your domain. I recommend usi
 
 ### Reverse DNS
 
-An rDNS record allows other email servers to make sure your IP address matches the domain it claims to be. How this is set up depends on how you are hosting your server. A lot of people will say that you need a VPS to self-host an email server but this isn't necessarily true. If you have an ISP that is willing to add an rDNS record for you, then you can host from home. Otherwise you need a VPS.
+An rDNS record allows other email servers to match a sender's IP address with the domain it claims to be.
+How this is set up depends on how you're hosting your server. For me, it was a simple phone call to my ISP.
+A lot of people will say that you need a VPS to self-host email, but this isn't true if you have an ISP that is willing to add an rDNS record for you.
 
-You can check if you have an rDNS record like so:
+You can check if you have an rDNS record with
 
 ```
-dig +short -x <public ip>
+# dig +short -x <public ip>
 ```
 
-This should respond with the domain name of you email server.
+This should respond with the domain name of you email server. e.g.
+
+```
+# dig +short -x 95.217.236.249
+lists.archlinux.org.
+```
 
 ### DKIM (Domain Keys Identified Mail)
 
-If you are on OpenBSD, read `/usr/local/share/doc/pkg-readmes/opensmtpd-filter-dkimsign`. This file was put there when you installed `opensmtpd-filter-dkimsign`. You may also find other package readmes in that directory which can be useful.
+See [the Rspamd manual on DKIM signing](https://rspamd.com/doc/modules/dkim_signing.html)
 
-Run the following commands:
-
+To get a keypair run the following command. For the selector I recommend putting `dkim`.
 ```
-# doas -u _dkimsign openssl genpkey -algorithm ed25519 -outform PEM -out /etc/mail/dkim/private.ed25519.key
-# printf "v=DKIM1;k=ed25519;p=%s\n" "$(doas -u _dkimsign openssl pkey -outform DER -pubout -in /etc/mail/dkim/private.ed25519.key | tail -c +13 | openssl base64)"
+# rspamadm dkim_keygen -s '<selector>' -d <domain> -t ed25519 -k /etc/mail/dkim/<domain>.key
 ```
 
-Copy the output of the `printf` command and paste it into a DNS TXT record on your domain: `<selector>._domainkey.example.com`. The selector can by anything. For my email server it is `default`. You can confirm this for yourself by running `dig +short TXT default._domainkey.zacoons.com`.
+It should output something like this
+```
+<selector>._domainkey IN TXT ( "v=DKIM1; k=ed25519;"
+        "p=ml82zTjl3EGAAwjpHezOeZQHzaDrxi64/jFfA+kdY2E=" ) ;
+```
+
+You'll need to copy that to a TXT record on your DNS. The TXT record in the output is weirdly formatted. It should really look like this:
+```
+v=DKIM1; k=ed25519; p=<key>
+```
+
+You can inspect what other people's keys look like by running
+```
+# dig +short TXT <selector>._domainkey.<domain>
+```
+e.g.
+```
+# dig +short TXT dkim._domainkey.zacoons.com
+"v=DKIM1; k=ed25519; p=ZD6c3x5YiLDljo0xsP5LAs5IbONeziS+NpcZlOA1800="
+```
+
+> WARNING: If you don't want to be on the cutting edge, then use a good ol' RSA key (see Rspamd manual above). Ed25519 keys are not widely supported in software, making it inadvisable to exclusively use them in a production environment, as it may result in rejected emails. If you choose to use Ed25519 keys, it is recommended to pair them with an RSA key, providing a fallback option in case a recipient domain is unable to parse Ed25519 keys or signatures.
 
 ### SPF (Sender Policy Framework)
 
 SPF records are designed to prevent forgery. They allow you to specify rules about how emails can be sent from your domain. For my server I have the following policy:
 
 ```
-zacoons.com:   v=spf a -all
+v=spf a -all
 ```
 
-This will check that the sender's IP address matches an A record for zacoons.com.
+This will check that the sender's IP address matches an A record for zacoons.com. Otherwise it will reject all mail from my domain.
 
-Read about SPF [here](http://www.open-spf.org/SPF_Record_Syntax) and check out what others do by running `dig +short TXT <domain>` (e.g. `dig +short TXT gmail.com`)
+Read about SPF [here](http://www.open-spf.org/SPF_Record_Syntax).
+You can see what others do by running
+```
+# dig +short TXT <domain>
+```
+e.g.
+```
+# dig +short TXT lists.archlinux.org
+"v=spf1 ip4:95.217.236.249 ip6:2a01:4f9:c010:9eb4::1 ~all"
+```
 
 ### DMARC (Domain-based Message Authentication, Reporting, and Conformance)
 
-DMARC records tell other email servers how to treat emails from our domain if they fail validation. For my server I have the following policy:
+DMARC records tell other email servers how to treat emails from your domain if they **fail** validations such as DKIM and SPF. For my server I have the following policy:
 
 ```
-_dmarc.zacoons.com:   v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@zacoons.com
+v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@zacoons.com
 ```
 
-This will cause the other server to quarantine emails from our domain which fail our SPF and DKIM tests.
+This will cause the other server to quarantine emails from a domain which fails validation, and it will send a report to dmarc-reports@zacoons.com.
 
-Read about DMARC [here](https://dmarc.org/overview) and check out what others do by running `dig +short TXT _dmarc.<domain>` (e.g. `dig +short TXT _dmarc.gmail.com`).
+Read about DMARC [here](https://dmarc.org/overview).
+You can see what others do by running
+```
+# dig +short TXT _dmarc.<domain>
+```
+e.g.
+```
+# dig +short TXT _dmarc.denshi.org
+"v=DMARC1; p=reject; rua=mailto:dmarc@denshi.org; fo=1"
+```
 
 ## Configuration
 
@@ -91,20 +135,30 @@ pki example.com key "/etc/ssl/private/example.com.key"
 
 table passwd file:/etc/mail/passwd
 table aliases file:/etc/mail/aliases
+table virtuals file:/etc/mail/virtuals
 
-filter dkimsign proc-exec "filter-dkimsign -d example.com -s default \
-        -a ed25519-sha256 -k /etc/mail/dkim/private.ed25519.key" user _dkimsign group _dkimsign
 filter rspamd proc-exec "filter-rspamd"
 
-listen on lo0
+# --- listeners ---
+
+listen on lo
+
 # inbound
+# you may need to change `bse0` to another interface. run `ifconfig` to see what the relevant network interface is called on your computer
+# this requires connecting servers to establish a TLS connection and they must have a valid SSL certificate
+# it also applies Rspamd filters
 listen on bse0 \
-        tls-require pki example.com \
+        tls-require verify pki example.com \
         filter rspamd
+
 # outbound
+# this listener requires authentication, making it only valid for sending outbound mail
+# rspamd must be applied so that it can DKIM sign your mail
 listen on bse0 port 587 \
         tls-require pki example.com auth <passwd> \
-        filter dkimsign
+        filter rspamd
+
+# --- actions and matchers ---
 
 action local_mail maildir alias <aliases>
 action remote_mail lmtp "/var/dovecot/lmtp" rcpt-to
@@ -115,8 +169,11 @@ match from local for local action local_mail
 match from any for domain example.com action remote_mail
 # outbound
 match from local for any action outbound
+# requires auth for a remote connection to send mail
 match from any auth for any action outbound
 ```
+
+See `man smtpd.conf` for more information. There is also a section below which provides links to other email server guides.
 
 The aliases file should already exist, but you'll need to create `/etc/mail/passwd` and populate it like so:
 
@@ -127,9 +184,15 @@ billyette@example.com:$2b$08$rERmMLIRNgo.ab/conrvI.VWB5RpOF3YE4lPi00LtxtCWhAEp7u
 
 This follows the format `<username>:<encrypted password>`.
 
-The encrypted password is generated with `smtpctl encrypt <password>`.
+The encrypted password is generated with
+```
+# smtpctl encrypt <password>
+```
+It's not actually encrypted, just salted and hashed. Essentially it jumbles up the password so that it can't be read, only checked against.
 
 ### Configuring Dovecot
+
+Before you do anything, make a backup of the original configuration.
 
 ```
 # mv /etc/dovecot/dovecot.conf /etc/dovecot/dovecot.conf.backup
@@ -167,11 +230,15 @@ service imap-login {
         }
 }
 
+# you can add more namespaces such as "sent", "trash", "drafts", etc.
+# see 
 namespace {
         inbox = yes
         separator = /
 }
 ```
+
+See [Dovecot's official documentation](https://doc.dovecot.org/2.3) for more details. You can also refer to one of the links in the final section of this guide.
 
 ## Conclusion
 
