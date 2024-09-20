@@ -244,7 +244,6 @@ service imap-login {
 }
 
 # you can add more namespaces such as "sent", "trash", "drafts", etc.
-# see 
 namespace {
         inbox = yes
         separator = /
@@ -252,6 +251,12 @@ namespace {
 ```
 
 See [Dovecot's official documentation](https://doc.dovecot.org/2.3) for more details. You can also refer to one of the links in the final section of this guide.
+
+You'll need to make a user called vmail
+
+```
+# useradd -d /var/vmail
+```
 
 ## Conclusion
 
