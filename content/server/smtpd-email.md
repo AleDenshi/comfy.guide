@@ -334,3 +334,5 @@ Here are some other guides which you might find useful to cross-reference with t
 - [unixdigest.com](https://www.unixdigest.com/tutorials/arch-linux-mail-server-tutorial-part-2-opensmtpd-dovecot-dkimproxy-and-lets-encrypt.html)
 - [poolp.org](https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd)
 - [omarpolo.com](https://www.omarpolo.com/post/opensmtd-dovecot-virtual-users.html)
+- [prefetch.eu](https://prefetch.eu/blog/2020/email-server)
+- [prefetch.eu (extras)](https://prefetch.eu/blog/2020/email-server-extras)
