@@ -243,10 +243,20 @@ service imap-login {
         }
 }
 
-# you can add more namespaces such as "sent", "trash", "drafts", etc.
 namespace {
         inbox = yes
-        separator = /
+        mailbox "Sent" {
+                auto = subscribe
+                special_use = \Sent
+        }
+        mailbox "Drafts" {
+                auto = subscribe
+                special_use = \Drafts
+        }
+        mailbox "Trash" {
+                auto = subscribe
+                special_use = \Trash
+        }
 }
 ```
 
