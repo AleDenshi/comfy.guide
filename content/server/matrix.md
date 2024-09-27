@@ -47,7 +47,7 @@ server {
     # These sections are required for client and federation discovery
     # (AKA: Client Well-Known URI)
     location /.well-known/matrix/client {
-        return 200 '{"m.homeserver": {"base_url": "https://{{<hl>}}example.org{{</hl>}}}}';
+        return 200 '{"m.homeserver": {"base_url": "https://{{<hl>}}example.org{{</hl>}}"}}';
         default_type application/json;
         add_header Access-Control-Allow-Origin *;
     }
