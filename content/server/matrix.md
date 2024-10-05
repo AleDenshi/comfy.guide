@@ -215,7 +215,7 @@ This can be un-commented to enable guests to see public rooms without authentica
 
 For native voice and video call support, the Synapse homserver needs to interface with a working **TURN and STUN Server.**
 
-First, follow the guide on installing and setting up [coturn](/coturn), setting either a shared secret or username-password pair for authentication.
+First, follow the guide on installing and setting up [coturn](/server/coturn), setting either a shared secret or username-password pair for authentication.
 
 Then, in `/etc/matrix-synapse/homeserver.yaml`, edit the configuration as follows:
 
