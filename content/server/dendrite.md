@@ -10,7 +10,7 @@ ports: [80, 443, 8448]
 author: Denshi
 ---
 
-The Matrix protocol's default implementation, [Synapse,](/matrix) is very memory and processor hungry, mostly due to it being written in the *interpreted Python programming language.* This means that running Synapse on less powerful servers may **take a lot of resources away** from other services. If you need a more
+The Matrix protocol's default implementation, [Synapse,](/server/matrix) is very memory and processor hungry, mostly due to it being written in the *interpreted Python programming language.* This means that running Synapse on less powerful servers may **take a lot of resources away** from other services. If you need a more
 efficient and less memory-intensive but still fully functional Matrix server, then [Dendrite](https://github.com/matrix-org/dendrite) is for you.
 
 ## Prerequisites
@@ -19,11 +19,11 @@ efficient and less memory-intensive but still fully functional Matrix server, th
 
 You are **not required** to run a Matrix server under a subdomain (like **matrix.example.org**), regardless of server software. You can run your server under **example.org** to ensure usernames and rooms look like `@user:example.org` and `#room:example.org` respectively.
 
-Because Matrix uses **HTTP** for transport over the SSL ports (443 and 8448), you'll have to configure NGINX for it to work. This can cause confusion, especially if you're running both a [static website](/basic/nginx/) and Matrix server under the same domain (like **example.org**).
+Because Matrix uses **HTTP** for transport over the SSL ports (443 and 8448), you'll have to configure NGINX for it to work. This can cause confusion, especially if you're running both a [static website](/server/nginx/) and Matrix server under the same domain (like **example.org**).
 
 Depending on your setup, there are 2 different configurations to achieve this:
 
-1. Your *desired* domain (**example.org**) has an [A DNS record](http://localhost:1313/basic/dns/) that already points to your desired Matrix server, so you can configure this or add to your existing NGINX static site configuration to setup Matrix.
+1. Your *desired* domain (**example.org**) has an [A DNS record](https://en.wikipedia.org/wiki/List_of_DNS_record_types) that already points to your desired Matrix server, so you can configure this or add to your existing NGINX static site configuration to setup Matrix.
 
 2. You wish to use Matrix with your *desired* domain (**example.org**) but this domain's A record points to a different server, accessible through another domain (like **matrix.example.org**). In this case, look
 into [delegation.](https://matrix-org.github.io/synapse/latest/delegate.html)
@@ -201,7 +201,7 @@ Now we can configure this in `dendrite.yaml` using the `connection_string:` opti
 
 Dendrite supports native voice and video calling by connecting to a compatible TURN and STUN server.
 
-Begin by setting up the [coturn](/coturn) TURN server using the guide provided, setting either a shared secret or a username-password pair for authentication.
+Begin by setting up the [coturn](/server/coturn) TURN server using the guide provided, setting either a shared secret or a username-password pair for authentication.
 
 Then edit the `turn:` section in `dendrite.yaml`:
 
@@ -222,7 +222,7 @@ Then edit the `turn:` section in `dendrite.yaml`:
 ```
 ### Directory and Ownership
 
-Like [Synapse,](/server/synapse) it's recommended you place the Dendrite program files in `/opt` to keep your server organized:
+Like [Synapse,](/server/matrix) it's recommended you place the Dendrite program files in `/opt` to keep your server organized:
 
 ```sh
 mv dendrite/ /opt/
