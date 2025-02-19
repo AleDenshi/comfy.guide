@@ -45,9 +45,9 @@ esac
 
 curl -fLO "https://downloads.getmonero.org/cli/$arch"
 
-tar -xvjf monero*
+tar -xvjf $arch*
 
-mv linux*/monero* /usr/bin/
+mv monero*/monero* /usr/bin/
 ```
 
 ## Configuration
