@@ -3,7 +3,7 @@
 title: "LUKS Encryption"
 description: "Encrypt external and internal disks on Linux."
 icon:  luks.svg
-date: 2025-05-03T21:36:21-05:00
+date: 2024-07-07T11:16:42-05:00
 #ports: [80, 443]
 
 ## Author Information
