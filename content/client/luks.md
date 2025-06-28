@@ -125,4 +125,36 @@ Set the following in `/boot/refind_linux.conf`:
 "Boot with minimal options"     "root=UUID={{<blue>}}83276439-f9fa-4429-a2e2-91c072c02c4f{{</blue>}} ro cryptdevice=UUID={{<hl>}}f4f9f9f6-222a-4018-b45a-9b86544890e4{{</hl>}}:cryptroot:allow-discards
 ```
 
+#### EFI Boot Stub Setup
+
+> This will only work if you mounted your EFI partition to /boot.
+
+Create a shell script containing the following:
+```sh
+#!/bin/sh
+
+params="cryptdevice=UUID={{<hl>}}f4f9f9f6-222a-4018-b45a-9b86544890e4{{</hl>}}:cryptroot \
+    root=UUID={{<blue>}}83276439-f9fa-4429-a2e2-91c072c02c4f{{</blue>}} rootfstype=ext4 rw \
+    initrd=\intel-ucode.img \
+    initrd=\initramfs-linux.img \
+    loglevel=3"
+
+efibootmgr --create --label "Arch Linux" \
+    --disk /dev/sda --part 1 \
+    --loader /vmlinuz-linux \
+    --unicode "${params}" \
+    --verbose
+```
+Save it as `bootentry.sh` and make it executable:
+
+```sh
+chmod +x bootentry.sh
+```
+
+Finally, create a boot entry by running the script:
+
+```sh
+sh bootentry.sh
+```
+
 Congratulations! You should now be able to reboot and run your system with LUKS encryption!
