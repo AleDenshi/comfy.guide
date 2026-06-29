@@ -250,7 +250,7 @@ It's essential to obtain **any other certificates** for [additional services](#c
 
 ```sh
 certbot -d {{<hl>}}chat.example.org{{</hl>}} --nginx
-certbot -d {{<hl>}}uploads.example.org{{</hl>}} --nginx
+certbot -d {{<hl>}}upload.example.org{{</hl>}} --nginx
 certbot -d {{<hl>}}proxy.example.org{{</hl>}} --nginx
 certbot -d {{<hl>}}pubsub.example.org{{</hl>}} --nginx
 ```
