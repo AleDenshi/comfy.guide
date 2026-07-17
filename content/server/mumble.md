@@ -58,7 +58,7 @@ sslKey=/usr/share/certs/{{<hl>}}example.org{{</hl>}}/privkey.pem
 Make sure to give appropriate file permissions to `mumble-user`:
 
 ```sh
-chown -R mumble-user:mumble-user /usr/share/certs/{{<hl>}}example.org{{</hl>}}
+chown -R mumble-server:mumble-server /usr/share/certs/{{<hl>}}example.org{{</hl>}}
 ```
 
 ### Public Directory
