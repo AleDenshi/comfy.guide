@@ -47,12 +47,12 @@ curl -fLO "https://downloads.getmonero.org/cli/$arch"
 
 tar -xvjf $arch*
 
-mv monero*/monero* /usr/bin/
+mv monero*/monero* /usr/local/bin/
 ```
 
 ## Configuration
 
-By default, Monero comes with no sample configuration files. Create one in `/etc/monerod.conf` using a text editor, and enter the following details:
+By default, Monero comes with no sample configuration files. Create a directory to store the config, `/etc/monero`, and then create a config file in `/etc/monero/monerod.conf`. Using a text editor, enter the following details:
 
 ```sh
 # Configuration for monerod
@@ -77,7 +77,7 @@ disable-rpc-ban=1
 
 ### Log files
 
-The logfile at `/var/log/monero/monerod.log` will get **very large, very soon** if you do not limit it's size. Add these options to `/etc/monerod.conf` to limit it's size, and limit the creation of additional log
+The logfile at `/var/log/monero/monero.log` will get **very large, very soon** if you do not limit it's size. Add these options to `/etc/monero/monerod.conf` to limit it's size, and limit the creation of additional log
  backups:
 
 ```sh
@@ -117,7 +117,7 @@ mkdir /var/log/monero && chown -R monero:monero /var/log/monero
 
 When running a node, [pruning](https://www.getmonero.org/resources/moneropedia/pruning.html) allows the user to save data by only storing 1/8th of the ring signature information. Every "pruned" node contains a random 1/8th of the data, so the information is never lost. While this isn't as helpful to the network as running a full node, it is a very reasonable option when storage space and bandwidth are limited. **A pruned node will only use 1/3rd of storage compared to a full node.**
 
-To enable pruning, add the following options to `/etc/monerod.conf`:
+To enable pruning, add the following options to `/etc/monero/monerod.conf`:
 ```sh
 prune-blockchain=true
 # This option should speed up the syncing process
@@ -190,7 +190,7 @@ printf "%s.b32.i2p
 
 ### Configuring monerod
 
-Then, in `/etc/monerod.conf`, add the following:
+Then, in `/etc/monero/monerod.conf`, add the following:
 
 ```sh
 # Tor config
@@ -210,7 +210,7 @@ Then, run this command to download the systemd daemon configuration for `monerod
 curl https://raw.githubusercontent.com/monero-project/monero/master/utils/systemd/monerod.service > {{<hl>}}/etc/systemd/system/monerod.service{{</hl>}}
 ```
 
-*Note: This configuration assumes that you've created a user named `monero` which runs the program `monerod` in it's home directory, and which points to the configuration in `/etc/monerod.conf`. Edit any of these details in `/etc/systemd/system/monerod.service` if they don't apply to your configuration.*
+*Note: This configuration assumes that you've created a user named `monero` which runs the program `monerod` in it's home directory, and which points to the configuration in `/etc/monero/monerod.conf`. Edit any of these details in `/etc/systemd/system/monerod.service` if they don't apply to your configuration.*
 
 Now reload the systemd service file:
 ```sh
@@ -224,7 +224,7 @@ systemctl restart monerod
 
 To monitor the node's status at any time (for example, to check sync progress) check the log file using `tail`:
 ```sh
-tail -f /var/log/monero/monerod.log
+tail -f /var/log/monero/monero.log
 ```
 
 ## Connecting to your Node
